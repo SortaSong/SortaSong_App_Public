@@ -1,0 +1,122 @@
+<resources>
+    <string name="app_name">SortaSound</string>
+    <string name="activity_player_setup_PlayerNameInput">Enter player name</string>
+    <string name="activity_player_setup_select_games">🎮 Select games</string>
+    <string name="activity_game_selection_confirm_selection">✅ Confirm selection</string>
+    <string name="activity_start_invalid_tracks">Invalid tracks:</string>
+    <string name="activity_gameplay_without_cards_noMoreCards">All cards played!</string>
+    <string name="activity_gameplay_without_cards_players_turn">Player\'s turn</string>
+    <string name="activity_gameplay_without_cards_cards_left_in_game">%1$d cards left in deck</string>
+    <string name="activity_gameplay_without_cards_play">Play</string>
+    <string name="activity_gameplay_without_cards_skip_to_next_song">Next song</string>
+    <string name="file_could_not_be_played">File X could not be played.</string>
+
+    <!-- New resources (EN) -->
+    <string name="item_game_status_game_name">Game Name</string>
+    <string name="item_game_status_status">Status</string>
+
+    <string name="popup_result_message_label">Result</string>
+    <string name="popup_result_artist_label">Artist</string>
+    <string name="popup_result_song_label">Song</string>
+
+    <string name="list_item_player_name">Player Name</string>
+    <string name="list_item_player_track_count_format">(%1$d)</string>
+
+    <string name="item_folder_status_folder_name">folder_name</string>
+    <string name="item_folder_status_create">Create</string>
+    <string name="item_folder_status_game_name">Game Name</string>
+    <string name="item_folder_status_status">Status</string>
+
+    <string name="activity_start_with_cards">Play with cards</string>
+    <string name="activity_start_without_cards">Play without cards</string>
+
+    <string name="activity_setup_choose_folder_prompt">Please choose the game folder</string>
+    <string name="activity_setup_choose_folder_button">Choose folder</string>
+
+    <string name="activity_settings_title">Settings</string>
+    <string name="activity_settings_data_section">Data</string>
+    <string name="activity_settings_sync_button">Sync data</string>
+    <string name="activity_settings_folders_section">Folders</string>
+    <string name="activity_settings_current_folder_label">Current folder:</string>
+    <string name="activity_settings_current_folder_display">%1$s\n%2$s</string>
+    <string name="activity_settings_not_set">Not set</string>
+    <string name="activity_settings_change_folder_button">Change folder</string>
+    <string name="activity_settings_rescan_button">Rescan game folders</string>
+    <string name="activity_settings_music_files_section">Music files</string>
+    <string name="activity_settings_verification_status_not_checked">Status: Not checked</string>
+    <string name="activity_settings_verify_missing_button">Verify missing</string>
+    <string name="activity_settings_verify_all_button">Verify all</string>
+    <string name="activity_settings_cancel_verification_button">Cancel verification</string>
+    <string name="activity_settings_back_button">Back</string>
+
+    <!-- PlayerSetupActivity -->
+    <string name="player_setup_name_exists">Player name already exists</string>
+    <string name="player_setup_enter_name">Please enter a player name</string>
+
+    <!-- MainActivity / Start screen -->
+    <string name="activity_start_folder_from_cache">Data from cache\nSelected folder:\n%1$s</string>
+    <string name="activity_start_folder_selected">Selected folder:\n%1$s</string>
+
+    <!-- MissingTracksActivity -->
+    <string name="missing_tracks_header">%1$d missing tracks:\n\n</string>
+    <string name="missing_tracks_clipboard_label">Missing Tracks</string>
+    <string name="missing_tracks_copied_to_clipboard">Copied to clipboard</string>
+
+    <!-- GameSelectionActivity -->
+    <string name="game_selection_no_game_selected">Please select at least one game.</string>
+
+    <!-- SettingsActivity Toasts and Status -->
+    <string name="settings_syncing_data">Syncing data…</string>
+    <string name="settings_data_synced_success">Data synced successfully</string>
+    <string name="settings_sync_failed">Sync failed: %1$s</string>
+    <string name="settings_no_folder_selected">No folder selected</string>
+    <string name="settings_scanning_folder">Scanning folder…</string>
+    <string name="settings_invalid_folder">Invalid folder</string>
+    <string name="settings_folder_count_found">%1$d game folders found</string>
+    <string name="settings_reset_and_start_verify">All tracks reset, starting verification…</string>
+    <string name="settings_verification_started">Verification started</string>
+    <string name="settings_verification_cancelled">Verification cancelled</string>
+
+    <string name="settings_status_ready">Status: Ready</string>
+    <string name="settings_status_checking">Checking: %1$d/%2$d (%3$d%%) - %4$s</string>
+    <string name="settings_status_completed">Status: Completed</string>
+    <string name="settings_status_failed">Status: Failed</string>
+
+    <!-- Gameplay strings -->
+    <string name="gameplay_file_not_found">%1$s\\%2$s not found!</string>
+    <string name="gameplay_correct">\u2705 Correct!</string>
+    <string name="gameplay_incorrectly_sorted">\u274c Incorrectly sorted</string>
+    <string name="gameplay_play_pause_pause">\u23F8 Pause</string>
+    <string name="gameplay_play_pause_play">\u25B6\uFE0F Play</string>
+    <string name="gameplay_no_player">No player</string>
+    <string name="gameplay_player_turn_with_name">%1$s\'s turn.</string>
+    <string name="gameplay_player_with_count">%1$s (%2$d)</string>
+
+    <string name="player_setup_selected_games_prefix">Selected games: %1$s</string>
+
+    <string name="track_sort_placeholder">🎕 ???</string>
+    <string name="track_sort_item_format">[%1$s] %2$s – %3$s</string>
+
+    <string name="qrscan_game_not_loaded">⚠️ Game not loaded. Please restart app or re-select folder.</string>
+    <string name="qrscan_mode_line">Mode: %1$s</string>
+    <string name="qrscan_game_detected_template">\u2705 Game detected:\nGame: %1$s\nFolder: %2$s\nTrack-Nr: %3$s\nFile: %4$s</string>
+    <string name="qrscan_mp3_not_found">⚠️ MP3 not found.</string>
+    <string name="qrscan_track_not_found_in_csv">⚠️ Track not found in CSV.</string>
+    <string name="qrscan_no_link_identifier">❌ No matching LinkIdentifier found.</string>
+    <string name="qrscan_camera_denied">Camera access denied.</string>
+
+    <string name="foldersetup_folder_path_display">Folder: %1$s</string>
+    <string name="foldersetup_loading_data">Loading game data from Supabase…</string>
+    <string name="foldersetup_checking_folders">Checking existing folders…</string>
+    <string name="foldersetup_found_missing_counts">%1$d found, %2$d missing</string>
+    <string name="foldersetup_error_loading">Error loading: %1$s</string>
+    <string name="foldersetup_created_count">%1$d of %2$d folders created</string>
+    <string name="record_player_arm">record player arm</string>
+    <string name="vinyl_record_spinning">vinyl record spinning</string>
+    <string name="actitvity_missing_tracks_titleText_default">missing trakcs</string>
+    <string name="actitvity_missing_tracks_gameNameText_default">Game Name</string>
+    <string name="actitvity_missing_tracks_copyToClipBoardButton_default">copy to clipboard</string>
+    <string name="actitvity_missing_tracks_clodeButton_default">close</string>
+    <string name="loadingText_default">loading data…</string>
+    <string name="activity_gameplay_without_cards_startGameButton_default">Ready?</string>
+</resources>

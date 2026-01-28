@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="sortasound_primary">#7F00FF</color> <!-- Lila -->
+    <color name="sortasound_secondary">#00E5FF</color> <!-- Türkis -->
+    <color name="sortasound_background">#000000</color> <!-- Schwarz -->
+    <color name="sortasound_text">#FFFFFF</color> <!-- Weiß -->
+</resources>

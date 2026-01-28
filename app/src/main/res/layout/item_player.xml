@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:backgroundTint="@color/sortasound_text"
+    android:backgroundTintMode="multiply"
+    >
+
+    <EditText
+        android:id="@+id/playerNameField"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:textColor="@color/sortasound_text"
+        android:hint="@string/list_item_player_name"
+        android:inputType="textPersonName"
+        android:autofillHints="name"
+        />
+
+    <Button
+        android:id="@+id/deletePlayerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_player_delete_icon"
+        android:backgroundTint="@color/sortasound_primary"/>
+</LinearLayout>

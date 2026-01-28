@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/black"
+    android:paddingTop="48dp"
+    android:paddingBottom="64dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+    <ImageView
+        android:src="@drawable/sortasound_logo_with_name"
+        android:contentDescription="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:layout_gravity="start" />
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_setup_choose_folder_prompt"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:paddingTop="48dp"
+        android:paddingBottom="64dp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"/>
+
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/chooseFolderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_setup_choose_folder_button"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        android:backgroundTint="@color/sortasound_primary"/>
+</LinearLayout>

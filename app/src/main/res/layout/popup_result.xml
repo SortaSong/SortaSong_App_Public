@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:paddingTop="48dp"
+    android:paddingBottom="64dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/popupMessage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:text="@string/popup_result_message_label"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        />
+
+    <TextView
+        android:id="@+id/Year"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:text="@string/popup_result_year_default"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        />
+
+    <TextView
+        android:id="@+id/Artist"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:text="@string/popup_result_artist_label"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+         />
+
+    <TextView
+        android:id="@+id/Song"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/popup_result_song_label"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        />
+</LinearLayout>

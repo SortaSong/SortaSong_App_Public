@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:paddingTop="48dp"
+    android:paddingBottom="64dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+    <ImageView
+        android:src="@drawable/sortasound_logo_with_name"
+        android:contentDescription="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="start" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/gameListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_game_selection_confirm_selection"
+        android:layout_marginTop="16dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        android:backgroundTint="@color/sortasound_primary"/>
+</LinearLayout>

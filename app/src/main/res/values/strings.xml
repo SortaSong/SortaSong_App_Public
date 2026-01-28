@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">SortaSound</string>
+    <string name="activity_player_setup_PlayerNameInput">Spielername eingeben</string>
+    <string name="activity_player_setup_select_games">🎮 Spiele auswählen</string>
+    <string name="activity_game_selection_confirm_selection">✅ Auswahl bestätigen</string>
+    <string name="activity_start_invalid_tracks">Ungültige Tracks:</string>
+    <string name="activity_gameplay_without_cards_noMoreCards">Alle Karten gespielt!</string>
+    <string name="activity_gameplay_without_cards_players_turn">Spieler ist dran</string>
+    <!-- Verwende Platzhalter für die verbleibende Kartenanzahl -->
+    <string name="activity_gameplay_without_cards_cards_left_in_game">Noch %1$d Karten im Stapel</string>
+    <string name="activity_gameplay_without_cards_play">Abspielen</string>
+    <string name="activity_gameplay_without_cards_skip_to_next_song">Nächstes Lied</string>
+    <string name="file_could_not_be_played">Die Datei X konnte nicht abgespielt werden.</string>
+    <string name="activity_gameplay_without_cards_checkmark" translatable="false">✓</string>
+    <string name="activity_gameplay_without_cards_down_arrow" translatable="false">🔽</string>
+    <string name="activity_gameplay_without_cards_up_arrow" translatable="false">🔼</string>
+
+    <!-- Neu hinzugefügte Ressourcen (DE) - Keys im Format filename_descriptive_stringname -->
+    <string name="item_game_status_game_name">Spielname</string>
+    <string name="item_game_status_status">Status</string>
+
+    <string name="item_player_delete_icon" translatable="false">❌</string>
+
+    <string name="popup_result_message_label">Ergebnis</string>
+    <string name="popup_result_year_default" translatable="false">YYYY</string>
+    <string name="popup_result_artist_label">Interpret</string>
+    <string name="popup_result_song_label">Titel</string>
+
+    <string name="list_item_player_initials" translatable="false">P</string>
+    <string name="list_item_player_name">Spielername</string>
+    <string name="list_item_player_track_count_default" translatable="false">(0)</string>
+    <string name="list_item_player_track_count_format">(%1$d)</string>
+
+    <string name="item_folder_status_game_name">Spielname</string>
+    <string name="item_folder_status_folder_name">Ordnername</string>
+    <string name="item_folder_status_status">Status</string>
+    <string name="item_folder_status_create">Erstellen</string>
+
+    <string name="activity_start_settings_button" translatable="false">⋮</string>
+    <string name="activity_start_with_cards">Mit Karten spielen</string>
+    <string name="activity_start_without_cards">Ohne Karten spielen</string>
+
+    <string name="activity_setup_choose_folder_prompt">Bitte wähle den Spiel-Ordner aus</string>
+    <string name="activity_setup_choose_folder_button">Ordner auswählen</string>
+
+    <string name="activity_settings_title">Einstellungen</string>
+    <string name="activity_settings_data_section">Daten</string>
+    <string name="activity_settings_sync_button">Daten synchronisieren</string>
+    <string name="activity_settings_folders_section">Ordner</string>
+    <string name="activity_settings_current_folder_label">Aktueller Ordner:</string>
+    <string name="activity_settings_not_set">Nicht gesetzt</string>
+    <string name="activity_settings_change_folder_button">Ordner ändern</string>
+    <string name="activity_settings_rescan_button">Spielordner neu scannen</string>
+    <string name="activity_settings_music_files_section">Musikdateien</string>
+    <string name="activity_settings_verification_status_not_checked">Status: Nicht geprüft</string>
+    <string name="activity_settings_verify_missing_button">Fehlende überprüfen</string>
+    <string name="activity_settings_verify_all_button">Alle neu überprüfen</string>
+    <string name="activity_settings_cancel_verification_button">Überprüfung abbrechen</string>
+    <string name="activity_settings_back_button">Zurück</string>
+
+    <!-- PlayerSetupActivity -->
+    <string name="player_setup_name_exists">Spielername existiert bereits</string>
+    <string name="player_setup_enter_name">Bitte einen Spielernamen eingeben</string>
+    <string name="player_setup_selected_games_prefix">Ausgewählte Spiele: %1$s</string>
+
+    <!-- MainActivity / Start screen -->
+    <string name="activity_start_folder_from_cache">Daten aus Cache\nGewählter Ordner:\n%1$s</string>
+    <string name="activity_start_folder_selected">Gewählter Ordner:\n%1$s</string>
+
+    <!-- MissingTracksActivity -->
+    <string name="missing_tracks_header">%1$d fehlende Tracks:\n\n</string>
+    <string name="missing_tracks_clipboard_label">Fehlende Tracks</string>
+    <string name="missing_tracks_copied_to_clipboard">In Zwischenablage kopiert</string>
+
+    <!-- GameSelectionActivity -->
+    <string name="game_selection_no_game_selected">Bitte mindestens ein Spiel auswählen.</string>
+
+    <!-- SettingsActivity Toasts und Status -->
+    <string name="settings_syncing_data">Synchronisiere Daten…</string>
+    <string name="settings_data_synced_success">Daten erfolgreich synchronisiert</string>
+    <string name="settings_sync_failed">Synchronisierung fehlgeschlagen: %1$s</string>
+    <string name="settings_no_folder_selected">Kein Ordner ausgewählt</string>
+    <string name="settings_scanning_folder">Scanne Ordner…</string>
+    <string name="settings_invalid_folder">Ungültiger Ordner</string>
+    <string name="settings_folder_count_found">%1$d Spielordner gefunden</string>
+    <string name="settings_reset_and_start_verify">Alle Tracks zurückgesetzt, starte Überprüfung…</string>
+    <string name="settings_verification_started">Überprüfung gestartet</string>
+    <string name="settings_verification_cancelled">Überprüfung abgebrochen</string>
+
+    <string name="settings_status_ready">Status: Bereit</string>
+    <string name="settings_status_checking">Überprüfe: %1$d/%2$d (%3$d%%) - %4$s</string>
+    <string name="settings_status_completed">Status: Abgeschlossen</string>
+    <string name="settings_status_failed">Status: Fehler</string>
+
+    <!-- Gameplay strings -->
+    <string name="gameplay_file_not_found">%1$s nicht gefunden!</string>
+    <string name="gameplay_correct">\u2705 Richtig!</string>
+    <string name="gameplay_incorrectly_sorted">\u274c Falsch einsortiert</string>
+    <string name="gameplay_play_pause_pause">\u23F8 Pause</string>
+    <string name="gameplay_play_pause_play">\u25B6\uFE0F Play</string>
+    <string name="gameplay_no_player">Kein Spieler</string>
+    <string name="gameplay_player_turn_with_name">%1$s ist dran.</string>
+    <string name="gameplay_player_with_count">%1$s (%2$d)</string>
+
+    <string name="activity_settings_current_folder_display">%1$s\n%2$s</string>
+
+    <string name="track_sort_placeholder">🎕 ???</string>
+    <string name="track_sort_item_format">[%1$s] %2$s – %3$s</string>
+
+    <string name="qrscan_game_not_loaded">⚠️ Spiel nicht geladen. Bitte App neu starten oder Ordner neu wählen.</string>
+    <string name="qrscan_mode_line">Modus: %1$s</string>
+    <string name="qrscan_game_detected_template">\u2705 Spiel erkannt:\nGame: %1$s\nOrdner: %2$s\nTrack-Nr: %3$s\nDatei: %4$s</string>
+    <string name="qrscan_mp3_not_found">⚠️ MP3 nicht gefunden.</string>
+    <string name="qrscan_track_not_found_in_csv">⚠️ Track nicht gefunden in CSV.</string>
+    <string name="qrscan_no_link_identifier">❌ Kein passender LinkIdentifier gefunden.</string>
+    <string name="qrscan_camera_denied">Kamerazugriff wurde verweigert.</string>
+
+    <string name="foldersetup_folder_path_display">Ordner: %1$s</string>
+    <string name="foldersetup_loading_data">Lade Spieldaten von Supabase…</string>
+    <string name="foldersetup_checking_folders">Prüfe vorhandene Ordner…</string>
+    <string name="foldersetup_found_missing_counts">%1$d gefunden, %2$d fehlen</string>
+    <string name="foldersetup_error_loading">Fehler beim Laden: %1$s</string>
+    <string name="foldersetup_created_count">%1$d von %2$d Ordnern erstellt</string>
+    <string name="record_player_arm">Schallplatterspielerarm</string>
+    <string name="vinyl_record_spinning">Schallplatte die sich dreht</string>
+    <string name="actitvity_missing_tracks_titleText_default">Fehlende Lieder</string>
+    <string name="actitvity_missing_tracks_gameNameText_default">Spielname</string>
+    <string name="actitvity_missing_tracks_copyToClipBoardButton_default">In Zwischenablage kopieren</string>
+    <string name="actitvity_missing_tracks_clodeButton_default">Schließen</string>
+    <string name="loadingText_default">Lade Daten…</string>
+    <string name="activity_gameplay_without_cards_oldestYear" translatable="false">1900</string>
+    <string name="activity_gameplay_without_cards_startGameButton_default">Bereit?</string>
+    <string name="activity_gameplay_without_cards_FutureYear" translatable="false">3000</string>
+</resources>

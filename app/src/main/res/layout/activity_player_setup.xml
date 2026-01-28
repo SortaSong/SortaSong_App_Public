@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:paddingTop="48dp"
+    android:paddingBottom="64dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+    <ImageView
+        android:src="@drawable/sortasound_logo_with_name"
+        android:contentDescription="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
+    <EditText
+        android:id="@+id/playerNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints=""
+        android:hint="@string/activity_player_setup_PlayerNameInput"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"/>
+
+    <Button
+        android:id="@+id/addPlayerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Spieler hinzufügen"
+        android:layout_marginTop="12dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        android:backgroundTint="@color/sortasound_primary"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/playerList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/selectGamesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🎮 Spiele auswählen"
+        android:layout_marginTop="16dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="180sp"
+        android:autoSizeStepGranularity="1sp"
+        android:maxLines="1"
+        android:backgroundTint="@color/sortasound_primary"/>
+</LinearLayout>
