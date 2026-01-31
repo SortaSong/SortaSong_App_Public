@@ -20,8 +20,10 @@ let gameInfo = {
     tracks: []
 };
 
-// Feature detection
+// Feature detection - try to detect if File System Access API actually works
+// Chrome Android has showDirectoryPicker but it throws errors
 const hasFileSystemAccess = 'showDirectoryPicker' in window;
+let fileSystemAccessWorks = hasFileSystemAccess; // Will be set to false if it fails
 
 // DOM Elements
 const steps = {
@@ -114,38 +116,43 @@ async function loadGameInfoFromSelection() {
 
 // Folder selection - uses File System Access API or fallback
 async function selectFolder() {
-    if (hasFileSystemAccess) {
+    // Try File System Access API first (if it previously worked or hasn't been tried)
+    if (fileSystemAccessWorks) {
         try {
             folderHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
             folderName = folderHandle.name;
             canSaveToFolder = true;
             return true;
         } catch (e) {
-            if (e.name !== 'AbortError') {
-                console.error('Error selecting folder:', e);
+            if (e.name === 'AbortError') {
+                // User cancelled - don't fall back
+                return false;
             }
-            return false;
+            // API exists but doesn't work (e.g., Chrome Android) - use fallback
+            console.log('File System Access API failed, using fallback:', e.message);
+            fileSystemAccessWorks = false;
+            folderHandle = null;
         }
-    } else {
-        // Firefox fallback: use hidden input
-        return new Promise((resolve) => {
-            elements.folderInput.onchange = (e) => {
-                const files = Array.from(e.target.files);
-                if (files.length > 0) {
-                    folderFiles = files;
-                    // Extract folder name from path
-                    const path = files[0].webkitRelativePath || files[0].name;
-                    folderName = path.split('/')[0];
-                    canSaveToFolder = false;
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-                elements.folderInput.value = ''; // Reset for next use
-            };
-            elements.folderInput.click();
-        });
     }
+    
+    // Fallback: use hidden file input
+    return new Promise((resolve) => {
+        elements.folderInput.onchange = (e) => {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                folderFiles = files;
+                // Extract folder name from path
+                const path = files[0].webkitRelativePath || files[0].name;
+                folderName = path.split('/')[0];
+                canSaveToFolder = false;
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+            elements.folderInput.value = ''; // Reset for next use
+        };
+        elements.folderInput.click();
+    });
 }
 
 // Scan folder for audio files
