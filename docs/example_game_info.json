@@ -1,0 +1,46 @@
+{
+  "game": "Test Custom Game",
+  "folderName": "TestCustomGame",
+  "linkIdentifier": "",
+  "cardPurchaseUrl": "",
+  "hasPhysicalCards": false,
+  "isCustom": true,
+  "createdAt": "2026-01-31T16:30:00Z",
+  "tracks": [
+    {
+      "trackNr": "1",
+      "song": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "releaseDate": "31.10.1975",
+      "releaseYear": 1975
+    },
+    {
+      "trackNr": "2",
+      "song": "Stairway to Heaven",
+      "artist": "Led Zeppelin",
+      "releaseDate": "08.11.1971",
+      "releaseYear": 1971
+    },
+    {
+      "trackNr": "3",
+      "song": "Hotel California",
+      "artist": "Eagles",
+      "releaseDate": "22.02.1977",
+      "releaseYear": 1977
+    },
+    {
+      "trackNr": "4",
+      "song": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "releaseDate": "10.09.1991",
+      "releaseYear": 1991
+    },
+    {
+      "trackNr": "5",
+      "song": "Billie Jean",
+      "artist": "Michael Jackson",
+      "releaseDate": "02.01.1983",
+      "releaseYear": 1983
+    }
+  ]
+}
