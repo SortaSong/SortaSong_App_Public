@@ -73,7 +73,24 @@ const translations = {
         load_more: 'Mehr laden',
         no_tracks_found: 'Keine Tracks gefunden.',
         search_hint: 'Bitte mindestens {n} Zeichen eingeben.',
-        search_prompt: 'Gib einen Suchbegriff ein, um Tracks zu finden.'
+        search_prompt: 'Gib einen Suchbegriff ein, um Tracks zu finden.',
+        
+        // Share with Community
+        share_community: '🌐 Community teilen',
+        share_title: 'Mit Community teilen',
+        share_desc: 'Teile dein Spiel mit anderen SortaSong-Spielern! Nach einer kurzen Überprüfung wird dein Spiel für alle verfügbar.',
+        share_game_name: 'Spielname:',
+        share_track_count: 'Anzahl Tracks:',
+        share_description_label: 'Beschreibung (optional)',
+        share_description_placeholder: "z.B. 'Pop Hits der 80er und 90er'",
+        share_note: '⚠️ Bitte teile nur Spiele mit Musik, die du legal besitzt. Einreichungen werden manuell überprüft.',
+        cancel: 'Abbrechen',
+        submit_share: '📤 Einreichen',
+        submitting: 'Wird eingereicht...',
+        submitted: 'Eingereicht',
+        share_success: '✅ Vielen Dank! Dein Spiel wurde eingereicht und wird bald überprüft.',
+        share_error: '❌ Fehler beim Einreichen. Bitte versuche es später erneut.',
+        share_error_empty: 'Bitte füge einen Spielnamen und mindestens einen Track hinzu.'
     },
     en: {
         // Workflow
@@ -145,7 +162,24 @@ const translations = {
         load_more: 'Load more',
         no_tracks_found: 'No tracks found.',
         search_hint: 'Please enter at least {n} characters.',
-        search_prompt: 'Enter a search term to find tracks.'
+        search_prompt: 'Enter a search term to find tracks.',
+        
+        // Share with Community
+        share_community: '🌐 Share with Community',
+        share_title: 'Share with Community',
+        share_desc: 'Share your game with other SortaSong players! After a brief review, your game will be available to everyone.',
+        share_game_name: 'Game name:',
+        share_track_count: 'Track count:',
+        share_description_label: 'Description (optional)',
+        share_description_placeholder: "e.g. 'Pop hits from the 80s and 90s'",
+        share_note: '⚠️ Please only share games with music you legally own. Submissions are manually reviewed.',
+        cancel: 'Cancel',
+        submit_share: '📤 Submit',
+        submitting: 'Submitting...',
+        submitted: 'Submitted',
+        share_success: '✅ Thank you! Your game has been submitted and will be reviewed soon.',
+        share_error: '❌ Error submitting. Please try again later.',
+        share_error_empty: 'Please add a game name and at least one track.'
     }
 };
 

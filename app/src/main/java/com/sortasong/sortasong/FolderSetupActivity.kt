@@ -10,6 +10,7 @@ import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sortasong.sortasong.data.CustomGameRepository
 import com.sortasong.sortasong.databinding.ActivityFolderSetupBinding
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,8 @@ data class GameFolderStatus(
     val folderName: String,
     val gameName: String,
     var exists: Boolean,
-    var shouldCreate: Boolean = false
+    var shouldCreate: Boolean = false,
+    val isCustom: Boolean = false
 )
 
 class FolderSetupActivity : AppCompatActivity() {
@@ -92,11 +94,16 @@ class FolderSetupActivity : AppCompatActivity() {
             return
         }
 
-        // Get all games from repository
+        // Get all official games from repository
         val games = GameRepository.games
+        
+        // Set official folder names for custom game detection
+        val officialFolderNames = games.map { it.folderName }.toSet()
+        CustomGameRepository.setOfficialFolderNames(officialFolderNames)
 
         folderStatuses.clear()
 
+        // Add official games
         for (game in games) {
             // Check if folder exists
             val exists = rootFolder.listFiles().any {
@@ -108,7 +115,25 @@ class FolderSetupActivity : AppCompatActivity() {
                     folderName = game.folderName,
                     gameName = game.game,
                     exists = exists,
-                    shouldCreate = false
+                    shouldCreate = false,
+                    isCustom = false
+                )
+            )
+        }
+        
+        // Scan for custom games
+        val customGameCount = CustomGameRepository.scanForCustomGames(this, folderUri)
+        Log.d("FolderSetup", "Found $customGameCount custom games")
+        
+        // Add custom games to the list (they always exist since we found them)
+        for (customGame in CustomGameRepository.customGames) {
+            folderStatuses.add(
+                GameFolderStatus(
+                    folderName = customGame.folderName,
+                    gameName = "${customGame.game} ⭐",  // Mark as custom
+                    exists = true,
+                    shouldCreate = false,
+                    isCustom = true
                 )
             )
         }

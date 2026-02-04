@@ -12,6 +12,7 @@ import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.lifecycleScope
+import com.sortasong.sortasong.data.CustomGameRepository
 import com.sortasong.sortasong.databinding.ActivitySettingsBinding
 import com.sortasong.sortasong.workers.VerificationManager
 import com.sortasong.sortasong.workers.VerificationProgress
@@ -170,10 +171,18 @@ class SettingsActivity : AppCompatActivity() {
 
             // Filter GameRepository
             GameRepository.filterGamesByAvailableFolders(this@SettingsActivity, existingFolders)
+            
+            // Scan for custom games
+            val officialFolderNames = GameRepository.games.map { it.folderName }.toSet()
+            CustomGameRepository.setOfficialFolderNames(officialFolderNames)
+            val customGameCount = CustomGameRepository.scanForCustomGames(this@SettingsActivity, folderUri)
+            Log.d("Settings", "Found $customGameCount custom games")
+            
+            val totalGames = existingFolders.size + customGameCount
 
             Toast.makeText(
                 this@SettingsActivity,
-                getString(R.string.settings_folder_count_found, existingFolders.size),
+                getString(R.string.settings_folder_count_found, totalGames),
                 Toast.LENGTH_SHORT
             ).show()
         }

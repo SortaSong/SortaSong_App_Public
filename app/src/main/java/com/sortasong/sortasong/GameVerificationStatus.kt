@@ -5,7 +5,8 @@ data class GameVerificationStatus(
     val totalTracks: Int,
     val availableTracks: Int,
     val unavailableTracks: Int,
-    val notVerifiedTracks: Int
+    val notVerifiedTracks: Int,
+    val isCustom: Boolean = false
 ) {
     val statusText: String
         get() = when {
@@ -16,4 +17,7 @@ data class GameVerificationStatus(
 
     val isClickable: Boolean
         get() = unavailableTracks > 0
+    
+    val displayName: String
+        get() = if (isCustom) "⭐ ${game.game}" else game.game
 }

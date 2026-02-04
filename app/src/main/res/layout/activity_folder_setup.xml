@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    android:padding="16dp">
+    android:paddingTop="48dp"
+    android:paddingBottom="64dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <TextView
         android:id="@+id/folderPathText"

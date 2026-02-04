@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +23,7 @@
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,14 +31,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FolderSetupActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".QrScanActivity" />
-        <activity android:name=".PlaybackActivity" />
-        <activity android:name=".PlayerSetupActivity" />
-        <activity android:name=".GameSelectionActivity" />
-        <activity android:name=".GamePlayWithoutCardsActivity" />
-        <activity android:name=".MissingTracksActivity" />
+        <activity android:name=".FolderSetupActivity" android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".QrScanActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PlaybackActivity" android:screenOrientation="portrait" />
+        <activity android:name=".PlayerSetupActivity" android:screenOrientation="portrait" />
+        <activity android:name=".GameSelectionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".GamePlayWithoutCardsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MissingTracksActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ManageCustomGamesActivity" android:screenOrientation="portrait" />
+        <activity android:name=".CustomGameEditorActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MySubmissionsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".BrowseCommunityGamesActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".TrackListEditorActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize" />
 
         <!-- WorkManager Foreground Service -->
         <service

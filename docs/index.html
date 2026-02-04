@@ -1,11 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=editor/">
-    <title>SortaSong - Redirecting...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SortaSong - Custom Playlists</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/shared.css">
 </head>
 <body>
-    <p>Redirecting to <a href="editor/">SortaSong Custom Game Editor</a>...</p>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <div class="top-bar-logo-group">
+            <a href="./" class="top-bar-logo">
+                <img src="img/logo.png" alt="SortaSong">
+            </a>
+            <a href="https://github.com/SortaSong/SortaSong_App_Public/releases/latest" target="_blank" class="get-app-link" data-i18n="get_app_link">📱 App holen</a>
+        </div>
+        <div class="top-bar-nav">
+            <a href="editor/" class="top-bar-link">🎨 <span class="link-text" data-i18n="nav_editor">Editor</span></a>
+            <a href="community/" class="top-bar-link">🌍 <span class="link-text" data-i18n="nav_community">Community</span></a>
+            <a href="check-status/" class="top-bar-link">📊 <span class="link-text" data-i18n="nav_status">Status</span></a>
+            
+            <div class="top-bar-divider admin-only"></div>
+            <a href="admin/" class="top-bar-link admin-only">🔧 <span class="link-text" data-i18n="nav_reports">Reports</span></a>
+            <a href="admin-submissions/" class="top-bar-link admin-only">📋 <span class="link-text" data-i18n="nav_submissions">Submissions</span></a>
+            
+            <!-- Language Switcher -->
+            <div class="top-bar-divider"></div>
+            <button class="lang-btn active" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            
+            <!-- Admin Login -->
+            <a href="admin/" class="top-bar-link admin-login-link">🔐</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>🎵 <span data-i18n="landing_title">SortaSong Custom Playlists</span></h1>
+            <p data-i18n="landing_subtitle">Erstelle eigene Musik-Quiz Playlists, teile sie mit der Community oder spiele Playlists von anderen.</p>
+        </section>
+
+        <!-- Main Feature Cards -->
+        <div class="card-grid">
+            <a href="editor/" class="feature-card">
+                <span class="icon">🎨</span>
+                <h3 data-i18n="card_editor_title">Playlist Editor</h3>
+                <p data-i18n="card_editor_desc">Erstelle und bearbeite eigene Playlists auf deinem PC. Lade Musik-Dateien, bearbeite Metadaten und exportiere für die App.</p>
+                <span class="arrow" data-i18n="card_editor_link">→ Editor öffnen</span>
+            </a>
+
+            <a href="community/" class="feature-card">
+                <span class="icon">🌍</span>
+                <h3 data-i18n="card_community_title">Community Playlists</h3>
+                <p data-i18n="card_community_desc">Entdecke Playlists von anderen Spielern. Vote für deine Favoriten und lade sie herunter.</p>
+                <span class="arrow" data-i18n="card_community_link">→ Community durchstöbern</span>
+            </a>
+
+            <a href="check-status/" class="feature-card">
+                <span class="icon">📊</span>
+                <h3 data-i18n="card_status_title">Submission Status</h3>
+                <p data-i18n="card_status_desc">Prüfe den Status deiner eingereichten Playlist oder bearbeite sie.</p>
+                <span class="arrow" data-i18n="card_status_link">→ Status prüfen</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><span data-i18n="footer_text">SortaSong - Ein Musik-Sortier-Spiel</span> | <a href="https://github.com/sortasong/SortaSong_App_Public" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script src="js/i18n-shared.js"></script>
+    <script src="js/topbar.js"></script>
 </body>
 </html>

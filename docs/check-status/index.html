@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong - Submission Status prüfen</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link">🎨 <span class="link-text" data-i18n="nav_editor">Editor</span></a>
+            <a href="../community/" class="top-bar-link">🌍 <span class="link-text" data-i18n="nav_community">Community</span></a>
+            <a href="../check-status/" class="top-bar-link active">📊 <span class="link-text" data-i18n="nav_status">Status</span></a>
+            
+            <div class="top-bar-divider admin-only"></div>
+            <a href="../admin/" class="top-bar-link admin-only">🔧 <span class="link-text" data-i18n="nav_reports">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link admin-only">📋 <span class="link-text" data-i18n="nav_submissions">Submissions</span></a>
+            
+            <!-- Language Switcher -->
+            <div class="top-bar-divider"></div>
+            <button class="lang-btn active" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>📊 <span data-i18n="status_title">Submission Status prüfen</span></h1>
+            <p data-i18n="status_subtitle">Geben Sie Ihre Submission-ID und Ihr Passwort ein, um den Status Ihrer eingereichten Playlist zu überprüfen.</p>
+        </div>
+
+        <!-- Login Form -->
+        <section id="loginSection" class="card">
+            <h2 data-i18n="login_title">Anmelden</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="submissionId" data-i18n="submission_id">Submission-ID</label>
+                    <input 
+                        type="text" 
+                        id="submissionId" 
+                        data-i18n-placeholder="submission_id_placeholder"
+                        placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" 
+                        required
+                        style="font-family: monospace; font-size: 0.9em;"
+                    >
+                    <small data-i18n="submission_id_hint">UUID die Sie nach der Einreichung erhalten haben</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" data-i18n="password">Passwort</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        data-i18n-placeholder="password_placeholder"
+                        placeholder="************" 
+                        required
+                        style="font-family: monospace;"
+                    >
+                    <small data-i18n="password_hint">12 Zeichen Passwort</small>
+                </div>
+
+                <button type="submit" class="btn-primary" data-i18n="check_status">Status prüfen</button>
+            </form>
+
+            <div id="loginError" class="error-message" style="display: none;"></div>
+        </section>
+
+        <!-- Status Display -->
+        <section id="statusSection" class="card" style="display: none;">
+            <div class="status-header">
+                <h2 id="gameName"></h2>
+                <span id="statusBadge" class="status-badge"></span>
+            </div>
+
+            <div class="status-details">
+                <div class="detail-row">
+                    <span class="label">Status:</span>
+                    <span id="statusText" class="value"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Eingereicht am:</span>
+                    <span id="submittedAt" class="value"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Zuletzt geändert:</span>
+                    <span id="updatedAt" class="value"></span>
+                </div>
+            </div>
+
+            <div id="pendingInfo" class="info-box" style="display: none;">
+                <h3>⏳ Warten auf Überprüfung</h3>
+                <p>Ihre Playlist wurde eingereicht und wartet auf Überprüfung durch einen Administrator. Dies kann einige Tage dauern.</p>
+            </div>
+
+            <div id="inProgressInfo" class="info-box" style="display: none;">
+                <h3>🔍 Wird überprüft</h3>
+                <p>Ein Administrator überprüft derzeit Ihre Playlist. Sie erhalten bald eine Rückmeldung.</p>
+            </div>
+
+            <div id="approvedInfo" class="info-box success" style="display: none;">
+                <h3>✅ Genehmigt!</h3>
+                <p>Ihre Playlist wurde genehmigt und ist jetzt für Community-Voting verfügbar!</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="voteCount">0</span>
+                        <span class="stat-label">Stimmen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="downloadCount">0</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                </div>
+                <a href="../community/" class="btn-secondary">Zur Community-Seite</a>
+            </div>
+
+            <div id="publishedInfo" class="info-box success" style="display: none;">
+                <h3>🎉 Veröffentlicht!</h3>
+                <p>Ihre Playlist wurde offiziell veröffentlicht und ist jetzt in der SortaSong App verfügbar!</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="publishedVoteCount">0</span>
+                        <span class="stat-label">Stimmen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="publishedDownloadCount">0</span>
+                        <span class="stat-label">Downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rejectedInfo" class="info-box error" style="display: none;">
+                <h3>❌ Abgelehnt</h3>
+                <p><strong>Grund:</strong></p>
+                <p id="rejectionReason" class="rejection-reason"></p>
+                <p>Sie können Ihre Submission bearbeiten und erneut einreichen.</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="editBtn" class="btn-primary" style="display: none;">
+                    ✏️ Submission bearbeiten
+                </button>
+                <button id="checkAgainBtn" class="btn-secondary">
+                    🔄 Erneut prüfen
+                </button>
+                <button id="logoutBtn" class="btn-secondary">
+                    ← Zurück
+                </button>
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section class="card help-section">
+            <h3>❓ <span data-i18n="help_title">Hilfe</span></h3>
+            <details>
+                <summary data-i18n="help_q1">Wo finde ich meinen Token und mein Passwort?</summary>
+                <p data-i18n="help_a1">Diese wurden Ihnen direkt nach dem Einreichen Ihrer Playlist angezeigt. Sie sollten diese notiert oder heruntergeladen haben.</p>
+            </details>
+            <details>
+                <summary data-i18n="help_q2">Ich habe meine Zugangsdaten verloren</summary>
+                <p data-i18n="help_a2">Leider können wir Token und Passwörter aus Sicherheitsgründen nicht wiederherstellen. Bitte reichen Sie Ihre Playlist erneut ein.</p>
+            </details>
+            <details>
+                <summary data-i18n="help_q3">Wie lange dauert die Überprüfung?</summary>
+                <p data-i18n="help_a3">Die Überprüfung dauert normalerweise 1-7 Tage, abhängig von der Anzahl der Submissions.</p>
+            </details>
+            <details>
+                <summary data-i18n="help_q4">Was sind die Submission-Stati?</summary>
+                <ul>
+                    <li><strong>Pending:</strong> <span data-i18n="status_pending">Wartet auf Überprüfung</span></li>
+                    <li><strong>In Progress:</strong> <span data-i18n="status_in_progress">Wird gerade überprüft</span></li>
+                    <li><strong>Approved:</strong> <span data-i18n="status_approved">Genehmigt, verfügbar für Voting</span></li>
+                    <li><strong>Published:</strong> <span data-i18n="status_published">Offiziell veröffentlicht in der App</span></li>
+                    <li><strong>Rejected:</strong> <span data-i18n="status_rejected">Abgelehnt mit Begründung</span></li>
+                </ul>
+            </details>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/i18n-shared.js"></script>
+    <script src="../js/topbar.js"></script>
+    <script src="js/check-status.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="#1e293b"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Game Name -->
+        <TextView
+            android:id="@+id/gameNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Game Name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Submitter and Track Count -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/submitterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="by Username"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" • "
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/trackCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 tracks"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Description (if available) -->
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description..."
+            android:textColor="#94a3b8"
+            android:textSize="13sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="8dp"
+            android:visibility="gone" />
+
+        <!-- Stats and Actions Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp">
+
+            <!-- Vote -->
+            <Button
+                android:id="@+id/voteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="👍 0"
+                android:textSize="14sp"
+                android:backgroundTint="#334155"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Downloads -->
+            <TextView
+                android:id="@+id/downloadsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⬇️ 0"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- Download Button -->
+            <Button
+                android:id="@+id/downloadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/browse_community_download_button"
+                android:textSize="14sp"
+                android:backgroundTint="#22c55e"
+                android:minWidth="0dp"
+                android:paddingHorizontal="16dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

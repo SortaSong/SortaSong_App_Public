@@ -15,7 +15,7 @@ class GameStatusAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(gameStatus: GameVerificationStatus) {
-            binding.gameNameText.text = gameStatus.game.game
+            binding.gameNameText.text = gameStatus.displayName
             binding.verificationStatusText.text = gameStatus.statusText
 
             // Make clickable only if there are unavailable tracks

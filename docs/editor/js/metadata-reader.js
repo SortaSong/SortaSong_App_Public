@@ -218,7 +218,11 @@ async function scanFiles(files, onProgress) {
         
         tracks.push({
             trackNr: (i + 1).toString(),
-            ...metadata
+            artist: metadata.artist,
+            song: metadata.title,  // Convert "title" to "song"
+            releaseDate: metadata.releaseDate,
+            releaseYear: metadata.releaseYear,
+            originalFileName: metadata.originalFileName
         });
     }
     
@@ -261,7 +265,11 @@ async function scanFolder(dirHandle, onProgress) {
         
         tracks.push({
             trackNr: (i + 1).toString(),
-            ...metadata
+            artist: metadata.artist,
+            song: metadata.title,  // Convert "title" to "song"
+            releaseDate: metadata.releaseDate,
+            releaseYear: metadata.releaseYear,
+            originalFileName: metadata.originalFileName
         });
     }
     

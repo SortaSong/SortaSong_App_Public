@@ -1,5 +1,6 @@
 package com.sortasong.sortasong
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
@@ -17,8 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sortasong.sortasong.data.ReportResult
+import com.sortasong.sortasong.data.TrackReportParams
+import com.sortasong.sortasong.data.TrackReportService
+import kotlinx.coroutines.launch
 
 class GamePlayWithoutCardsActivity : AppCompatActivity() {
     private lateinit var startGameButton: Button
@@ -132,10 +138,16 @@ class GamePlayWithoutCardsActivity : AppCompatActivity() {
         val Year = popupView.findViewById<TextView>(R.id.Year)
         val Artist = popupView.findViewById<TextView>(R.id.Artist)
         val Song = popupView.findViewById<TextView>(R.id.Song)
+        val reportButton = popupView.findViewById<Button>(R.id.reportIssueButton)
         messageView.text = message
         Year.text = InsertedTrack.releaseDate.takeLast(4)
         Artist.text = InsertedTrack.artist
         Song.text = InsertedTrack.song
+        
+        // Hide report button for custom tracks (negative IDs can't be reported)
+        if (InsertedTrack.trackId < 0) {
+            reportButton.visibility = View.GONE
+        }
 
         val popupWindow = PopupWindow(
             popupView,
@@ -148,6 +160,12 @@ class GamePlayWithoutCardsActivity : AppCompatActivity() {
         val bg = AppCompatResources.getDrawable(this, android.R.drawable.alert_light_frame)
         popupWindow.setBackgroundDrawable(bg)
         popupWindow.elevation = 10f
+        
+        // Report button click handler
+        reportButton.setOnClickListener {
+            showReportDialog(InsertedTrack)
+        }
+        
         popupView.setOnClickListener {
             popupWindow.dismiss()
             drawNextCard()
@@ -157,6 +175,82 @@ class GamePlayWithoutCardsActivity : AppCompatActivity() {
         popupWindow.showAtLocation(findViewById(R.id.rootLayout), Gravity.CENTER, 0, 0)
 
 
+    }
+    
+    private fun showReportDialog(track: TrackEntry) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_report_issue, null)
+        
+        val editArtist = dialogView.findViewById<EditText>(R.id.editArtist)
+        val editTitle = dialogView.findViewById<EditText>(R.id.editTitle)
+        val editReleaseDate = dialogView.findViewById<EditText>(R.id.editReleaseDate)
+        val editYear = dialogView.findViewById<EditText>(R.id.editYear)
+        val editComment = dialogView.findViewById<EditText>(R.id.editComment)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+        val btnSubmit = dialogView.findViewById<Button>(R.id.btnSubmit)
+        
+        // Pre-fill with current values
+        editArtist.setText(track.artist)
+        editTitle.setText(track.song)
+        editReleaseDate.setText(track.releaseDate)
+        editYear.setText(track.releaseYear?.toString() ?: "")
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        btnSubmit.setOnClickListener {
+            val suggestedArtist = editArtist.text.toString().trim()
+            val suggestedTitle = editTitle.text.toString().trim()
+            val suggestedReleaseDate = editReleaseDate.text.toString().trim().takeIf { it.isNotBlank() }
+            val suggestedYear = editYear.text.toString().trim().toIntOrNull()
+            val comment = editComment.text.toString().trim().takeIf { it.isNotBlank() }
+            
+            // Check if anything actually changed
+            val hasChanges = suggestedArtist != track.artist ||
+                    suggestedTitle != track.song ||
+                    suggestedReleaseDate != track.releaseDate ||
+                    suggestedYear != track.releaseYear
+            
+            if (!hasChanges) {
+                Toast.makeText(this, getString(R.string.report_no_changes), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            val reportParams = TrackReportParams(
+                trackId = track.trackId,
+                suggestedSong = suggestedTitle,
+                suggestedArtist = suggestedArtist,
+                suggestedReleaseDate = suggestedReleaseDate ?: "",
+                suggestedReleaseYear = suggestedYear,
+                userComment = comment ?: "",
+                reporterId = TrackReportService.getReporterId(this)
+            )
+            
+            lifecycleScope.launch {
+                when (val result = TrackReportService.submitReport(reportParams)) {
+                    is ReportResult.Success -> {
+                        Toast.makeText(this@GamePlayWithoutCardsActivity, 
+                            getString(R.string.report_submitted), Toast.LENGTH_SHORT).show()
+                    }
+                    is ReportResult.Duplicate -> {
+                        Toast.makeText(this@GamePlayWithoutCardsActivity, 
+                            getString(R.string.report_duplicate), Toast.LENGTH_SHORT).show()
+                    }
+                    is ReportResult.Error -> {
+                        Toast.makeText(this@GamePlayWithoutCardsActivity, 
+                            getString(R.string.report_failed, result.message), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            
+            dialog.dismiss()
+        }
+        
+        dialog.show()
     }
     private fun startGame() {
         players.forEach { player ->
@@ -195,7 +289,9 @@ class GamePlayWithoutCardsActivity : AppCompatActivity() {
         }
 
         val folder = GameRepository.getFolderForTrack(currentTrack!!)
-        val fileName = "${currentTrack!!.artist} - ${currentTrack!!.song}"
+        // Use originalFileName if available (for custom games), otherwise construct from artist/song
+        val fileName = currentTrack!!.originalFileName?.substringBeforeLast('.') 
+            ?: "${currentTrack!!.artist} - ${currentTrack!!.song}"
         val mp3Uri = selectedRootUri?.let {
             GameRepository.findFileInSubfolder(this, it, folder, fileName)
         }

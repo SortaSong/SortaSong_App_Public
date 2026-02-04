@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong Admin - Community Submissions</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../admin/css/styles.css">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Additional styles for submissions */
+        .submission-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #1e293b;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 8px;
+            gap: 12px;
+        }
+        
+        .submission-item:hover {
+            background: #334155;
+        }
+        
+        .submission-token {
+            width: 60px;
+            font-size: 11px;
+            color: #64748b;
+            font-family: monospace;
+        }
+        
+        .submission-info {
+            flex: 1;
+        }
+        
+        .submission-name {
+            font-weight: 500;
+            color: #f8fafc;
+        }
+        
+        .submission-folder {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .submission-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: right;
+        }
+        
+        .submission-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+        
+        .submission-tracks {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .status-pending { background: #f59e0b; color: #0f172a; }
+        .status-in_progress { background: #3b82f6; color: white; }
+        .status-approved { background: #22c55e; color: #0f172a; }
+        .status-rejected { background: #ef4444; color: white; }
+        .status-published { background: #8b5cf6; color: white; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .detail-section {
+            margin-bottom: 24px;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .detail-section h3 {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        
+        .game-meta {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px;
+        }
+        
+        .game-meta label {
+            color: #64748b;
+        }
+        
+        .game-meta span {
+            color: #f8fafc;
+        }
+        
+        .tracks-preview {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .track-preview-row {
+            display: flex;
+            gap: 12px;
+            padding: 8px;
+            background: #0f172a;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .track-preview-row .num {
+            width: 30px;
+            color: #64748b;
+        }
+        
+        .track-preview-row .artist {
+            width: 200px;
+            color: #f8fafc;
+        }
+        
+        .track-preview-row .title {
+            flex: 1;
+            color: #94a3b8;
+        }
+        
+        .track-preview-row .year {
+            width: 60px;
+            text-align: right;
+            color: #64748b;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .btn-approve {
+            background: #22c55e;
+            color: white;
+        }
+        
+        .btn-reject {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .review-notes {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 12px;
+        }
+        
+        .json-preview {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre;
+        }
+        
+        .form-group-inline {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: start;
+        }
+        
+        .form-group-inline label {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        
+        select.form-control {
+            padding: 8px 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #f8fafc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        select.form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+        
+        .form-control {
+            padding: 8px 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #f8fafc;
+            font-size: 14px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+        
+        .status-control {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        
+        .status-control select {
+            flex: 1;
+        }
+        
+        .btn-update-status {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .btn-update-status:hover {
+            background: #2563eb;
+        }
+        
+        .btn-update-status:disabled {
+            background: #64748b;
+            cursor: not-allowed;
+        }
+        
+        .btn-publish {
+            background: #8b5cf6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 12px;
+            width: 100%;
+        }
+        
+        .btn-publish:hover:not(:disabled) {
+            background: #7c3aed;
+        }
+        
+        .btn-publish:disabled {
+            background: #64748b;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        .info-box {
+            background: #0f172a;
+            border-left: 3px solid #3b82f6;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        
+        .info-box.warning {
+            border-left-color: #f59e0b;
+        }
+        
+        .hidden-field {
+            display: none;
+        }
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-dialog {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-dialog h2 {
+            color: #f8fafc;
+            margin-bottom: 16px;
+        }
+        
+        .modal-dialog p {
+            color: #cbd5e1;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .modal-dialog ul {
+            color: #cbd5e1;
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-dialog li {
+            margin-bottom: 8px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        
+        .modal-actions button {
+            padding: 10px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .modal-actions .btn-cancel {
+            background: #475569;
+            color: white;
+        }
+        
+        .modal-actions .btn-confirm {
+            background: #8b5cf6;
+            color: white;
+        }
+        
+        .modal-actions .btn-confirm:hover {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link">🎨 <span class="link-text">Editor</span></a>
+            <a href="../community/" class="top-bar-link">🌍 <span class="link-text">Community</span></a>
+            <a href="../check-status/" class="top-bar-link">📊 <span class="link-text">Status</span></a>
+            
+            <div class="top-bar-divider"></div>
+            <a href="../admin/" class="top-bar-link">🔧 <span class="link-text">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link active">📋 <span class="link-text">Submissions</span></a>
+        </div>
+    </nav>
+
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen">
+            <div class="login-container">
+                <h1>🌐 SortaSong Admin</h1>
+                <p>Community Submissions Review</p>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="admin@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Your password">
+                </div>
+                
+                <button id="loginBtn" class="btn-primary">🔑 Login</button>
+                
+                <p class="hint">💡 Create an admin user in Supabase Auth, then run admin_policies.sql</p>
+            </div>
+        </div>
+
+        <!-- Main Screen - Submissions List -->
+        <div id="mainScreen" class="screen hidden">
+            <div class="admin-header">
+                <h1>🌐 Community Submissions</h1>
+                <div class="header-actions">
+                    <span id="submissionCount">0 submissions</span>
+                    <button id="refreshBtn" class="btn-secondary">🔄 Refresh</button>
+                    <button id="logoutBtn" class="btn-secondary">🚪 Logout</button>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <label>
+                    <input type="checkbox" id="showPendingOnly" checked>
+                    Show pending only
+                </label>
+                <input type="text" id="searchInput" placeholder="🔍 Search by game name or folder...">
+            </div>
+
+            <div id="submissionsList" class="track-list">
+                <!-- Submission items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Publish Confirmation Modal -->
+        <div id="publishModal" class="modal-overlay">
+            <div class="modal-dialog">
+                <h2>🚀 Publish to Official Games</h2>
+                <p>This action will create official entries for this game:</p>
+                <ul>
+                    <li>Add game entry to the official games table</li>
+                    <li>Import all tracks to the official tracks table</li>
+                    <li>Update submission status to "published"</li>
+                </ul>
+                <p><strong>This action cannot be undone.</strong></p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="closePublishModal()">Cancel</button>
+                    <button class="btn-confirm" onclick="confirmPublish()">🚀 Publish Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Screen - Submission Detail -->
+        <div id="detailScreen" class="screen hidden">
+            <header>
+                <button id="backBtn" class="btn-secondary">← Back</button>
+                <h1 id="detailTitle">Submission</h1>
+                <div class="header-actions">
+                    <span id="statusBadge" class="status-pending">PENDING</span>
+                </div>
+            </header>
+
+            <div class="detail-container">
+                <!-- Game Info -->
+                <div class="detail-section">
+                    <h3>📀 Game Information</h3>
+                    <div class="game-meta">
+                        <label>Game Name:</label>
+                        <span id="detailGameName">-</span>
+                        <label>Folder Name:</label>
+                        <span id="detailFolderName">-</span>
+                        <label>Description:</label>
+                        <span id="detailDescription">-</span>
+                        <label>Track Count:</label>
+                        <span id="detailTrackCount">0</span>
+                        <label>Submitted:</label>
+                        <span id="detailSubmittedAt">-</span>
+                        <label>Submitted by:</label>
+                        <span id="detailSubmittedBy">-</span>
+                        <label>Submission ID:</label>
+                        <span id="detailToken" style="font-family: monospace; color: #3b82f6;">-</span>
+                        <label>Votes:</label>
+                        <span id="detailVoteCount">0</span>
+                        <label>Downloads:</label>
+                        <span id="detailDownloadCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Tracks Preview -->
+                <div class="detail-section">
+                    <h3>🎵 Tracks Preview</h3>
+                    <div class="tracks-preview" id="tracksPreview">
+                        <!-- Track rows will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- JSON Preview -->
+                <div class="detail-section">
+                    <h3>📄 Raw JSON Data</h3>
+                    <details>
+                        <summary style="cursor: pointer; color: #94a3b8; margin-bottom: 8px;">Click to expand</summary>
+                        <div class="json-preview" id="jsonPreview"></div>
+                    </details>
+                </div>
+
+                <!-- Review Section -->
+                <div class="detail-section">
+                    <h3>📝 Review & Status Management</h3>
+                    
+                    <!-- Status Control -->
+                    <div class="form-group-inline">
+                        <label>Status:</label>
+                        <div class="status-control">
+                            <select id="statusDropdown" class="form-control">
+                                <option value="pending">pending</option>
+                                <option value="in_progress">in_progress</option>
+                                <option value="approved">approved</option>
+                                <option value="rejected">rejected</option>
+                            </select>
+                            <button id="btnUpdateStatus" class="btn-update-status">Update</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Rejection Reason (shown only when rejected) -->
+                    <div id="rejectionReasonGroup" class="hidden-field form-group-inline">
+                        <label>Rejection Reason:</label>
+                        <textarea id="rejectionReason" class="form-control" rows="3" placeholder="Explain why this submission was rejected..."></textarea>
+                    </div>
+                    
+                    <!-- Admin Notes -->
+                    <div class="form-group-inline">
+                        <label>Admin Notes:</label>
+                        <textarea id="adminNotes" class="form-control" rows="3" placeholder="Private notes (not shown to users)..."></textarea>
+                    </div>
+                    
+                    <!-- Publish Button -->
+                    <button id="btnPublish" class="btn-publish hidden-field">🚀 Publish to Official Games</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../admin/js/supabase-admin.js"></script>
+    <script>
+        // State
+        let submissions = [];
+        let currentSubmission = null;
+        
+        const screens = {
+            login: document.getElementById('loginScreen'),
+            main: document.getElementById('mainScreen'),
+            detail: document.getElementById('detailScreen')
+        };
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            setupEventListeners();
+            
+            // Initialize Supabase and check for existing session
+            const hasSession = await supabaseAdmin.init();
+            if (hasSession) {
+                showScreen('main');
+                await loadSubmissions();
+            }
+        });
+        
+        function setupEventListeners() {
+            document.getElementById('loginBtn').addEventListener('click', handleLogin);
+            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+            document.getElementById('refreshBtn').addEventListener('click', loadSubmissions);
+            document.getElementById('showPendingOnly').addEventListener('change', renderSubmissions);
+            document.getElementById('searchInput').addEventListener('input', renderSubmissions);
+            document.getElementById('backBtn').addEventListener('click', () => showScreen('main'));
+            document.getElementById('btnUpdateStatus').addEventListener('click', handleStatusUpdate);
+            document.getElementById('statusDropdown').addEventListener('change', handleStatusChange);
+            document.getElementById('btnPublish').addEventListener('click', showPublishModal);
+            
+            // Enter key to login
+            document.getElementById('password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleLogin();
+            });
+        }
+        
+        async function handleLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!email || !password) {
+                alert('Please enter email and password');
+                return;
+            }
+            
+            const btn = document.getElementById('loginBtn');
+            btn.disabled = true;
+            btn.textContent = 'Logging in...';
+            
+            try {
+                await supabaseAdmin.login(email, password);
+                showScreen('main');
+                await loadSubmissions();
+            } catch (e) {
+                alert('Login failed: ' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔑 Login';
+            }
+        }
+        
+        async function handleLogout() {
+            await supabaseAdmin.logout();
+            showScreen('login');
+        }
+        
+        async function loadSubmissions() {
+            const list = document.getElementById('submissionsList');
+            list.innerHTML = '<div class="loading">Loading...</div>';
+            
+            try {
+                const { data, error } = await supabaseAdmin.from('community_submissions')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw new Error(error.message);
+                
+                submissions = data || [];
+                document.getElementById('submissionCount').textContent = `${submissions.length} submissions`;
+                renderSubmissions();
+            } catch (e) {
+                list.innerHTML = `<div class="loading">Error: ${e.message}</div>`;
+            }
+        }
+        
+        function renderSubmissions() {
+            const list = document.getElementById('submissionsList');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const pendingOnly = document.getElementById('showPendingOnly').checked;
+            
+            let filtered = submissions;
+            
+            if (pendingOnly) {
+                filtered = filtered.filter(s => s.status === 'pending');
+            }
+            
+            if (search) {
+                filtered = filtered.filter(s => {
+                    const gd = s.game_data || {};
+                    return (gd.game || '').toLowerCase().includes(search) ||
+                           (gd.folderName || '').toLowerCase().includes(search);
+                });
+            }
+            
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="loading">No submissions found.</div>';
+                return;
+            }
+            
+            list.innerHTML = filtered.map(s => {
+                const gd = s.game_data || {};
+                const gameName = gd.game || 'Unknown';
+                const folderName = gd.folderName || 'Unknown';
+                const trackCount = (gd.tracks || []).length;
+                const date = new Date(s.created_at || s.createdAt).toLocaleDateString('de-DE');
+                const token = s.id.substring(0, 6);
+                const statusBadge = `<span class="status-badge status-${s.status || 'pending'}">${(s.status || 'pending').toUpperCase()}</span>`;
+                const stats = [];
+                stats.push(`🎵 ${trackCount}`);
+                if ((s.status === 'approved' || s.status === 'published') && s.vote_count) {
+                    stats.push(`👍 ${s.vote_count}`);
+                }
+                if ((s.status === 'approved' || s.status === 'published') && s.download_count) {
+                    stats.push(`⬇️ ${s.download_count}`);
+                }
+                
+                return `
+                    <div class="submission-item" data-id="${s.id}">
+                        <span class="submission-token">${token}</span>
+                        <div class="submission-info">
+                            <div class="submission-name">${escapeHtml(gameName)}</div>
+                            <div class="submission-folder">📁 ${escapeHtml(folderName)}</div>
+                        </div>
+                        <div class="submission-meta">
+                            <div class="submission-stats">
+                                <div class="submission-tracks">${stats.join(' • ')}</div>
+                                <div>${date}</div>
+                            </div>
+                            ${statusBadge}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            list.querySelectorAll('.submission-item').forEach(item => {
+                item.addEventListener('click', () => openDetail(item.dataset.id));
+            });
+        }
+        
+        function openDetail(id) {
+            currentSubmission = submissions.find(s => s.id === id);
+            if (!currentSubmission) return;
+            
+            const s = currentSubmission;
+            const gameData = s.game_data || {};
+            const gameName = gameData.game || 'Unknown';
+            const folderName = gameData.folderName || 'Unknown';
+            const trackCount = (gameData.tracks || []).length;
+            
+            document.getElementById('detailTitle').textContent = gameName;
+            document.getElementById('statusBadge').className = `status-badge status-${s.status || 'pending'}`;
+            document.getElementById('statusBadge').textContent = (s.status || 'pending').toUpperCase();
+            
+            document.getElementById('detailGameName').textContent = gameName;
+            document.getElementById('detailFolderName').textContent = folderName;
+            document.getElementById('detailDescription').textContent = s.description || '-';
+            document.getElementById('detailTrackCount').textContent = trackCount;
+            document.getElementById('detailSubmittedAt').textContent = new Date(s.created_at || s.createdAt).toLocaleString('de-DE');
+            document.getElementById('detailSubmittedBy').textContent = s.submitted_by_name || 'Anonymous';
+            document.getElementById('detailToken').textContent = s.id;
+            document.getElementById('detailVoteCount').textContent = s.vote_count || 0;
+            document.getElementById('detailDownloadCount').textContent = s.download_count || 0;
+            
+            // Update status dropdown
+            document.getElementById('statusDropdown').value = s.status || 'pending';
+            document.getElementById('adminNotes').value = s.admin_notes || '';
+            document.getElementById('rejectionReason').value = s.rejection_reason || '';
+            
+            // Show/hide rejection reason based on current status
+            handleStatusChange();
+            
+            // Render tracks
+            const tracks = gameData.tracks || [];
+            document.getElementById('tracksPreview').innerHTML = tracks.map((t, i) => `
+                <div class="track-preview-row">
+                    <span class="num">${i + 1}</span>
+                    <span class="artist">${escapeHtml(t.artist || '-')}</span>
+                    <span class="title">${escapeHtml(t.title || t.song || '-')}</span>
+                    <span class="year">${t.year || t.releaseYear || '-'}</span>
+                </div>
+            `).join('') || '<p>No tracks</p>';
+            
+            // JSON preview
+            document.getElementById('jsonPreview').textContent = JSON.stringify(gameData, null, 2);
+            
+            // Update Publish button visibility
+            const publishBtn = document.getElementById('btnPublish');
+            if (s.status === 'approved') {
+                publishBtn.classList.remove('hidden-field');
+            } else {
+                publishBtn.classList.add('hidden-field');
+            }
+            
+            showScreen('detail');
+        }
+        
+        function handleStatusChange() {
+            const status = document.getElementById('statusDropdown').value;
+            const rejectionGroup = document.getElementById('rejectionReasonGroup');
+            
+            if (status === 'rejected') {
+                rejectionGroup.classList.remove('hidden-field');
+            } else {
+                rejectionGroup.classList.add('hidden-field');
+            }
+        }
+        
+        async function handleStatusUpdate() {
+            if (!currentSubmission) return;
+            
+            const newStatus = document.getElementById('statusDropdown').value;
+            const currentStatus = currentSubmission.status || 'pending';
+            
+            if (newStatus === currentStatus) {
+                alert('No status change made');
+                return;
+            }
+            
+            if (!confirm(`Change status from ${currentStatus} to ${newStatus}?`)) return;
+            
+            const rejectionReason = document.getElementById('rejectionReason').value.trim();
+            const adminNotes = document.getElementById('adminNotes').value.trim();
+            
+            if (newStatus === 'rejected' && !rejectionReason) {
+                alert('Please provide a rejection reason');
+                return;
+            }
+            
+            const btn = document.getElementById('btnUpdateStatus');
+            btn.disabled = true;
+            btn.textContent = 'Updating...';
+            
+            try {
+                const updateData = {
+                    status: newStatus,
+                    updated_at: new Date().toISOString()
+                };
+                
+                if (newStatus === 'rejected') {
+                    updateData.rejection_reason = rejectionReason;
+                }
+                
+                if (adminNotes) {
+                    updateData.admin_notes = adminNotes;
+                }
+                
+                const { error } = await supabaseAdmin.from('community_submissions')
+                    .update(updateData)
+                    .eq('id', currentSubmission.id);
+                
+                if (error) throw new Error(error.message);
+                
+                alert(`Status updated to ${newStatus}!`);
+                await loadSubmissions();
+                if (submissions.length > 0) {
+                    const updated = submissions.find(s => s.id === currentSubmission.id);
+                    if (updated) openDetail(updated.id);
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Update';
+            }
+        }
+        
+        function showPublishModal() {
+            if (!currentSubmission) return;
+            
+            // Basic validation
+            if (currentSubmission.status !== 'approved') {
+                alert('Only approved submissions can be published');
+                return;
+            }
+            
+            const gameData = currentSubmission.game_data || {};
+            const gameName = gameData.game;
+            if (!gameName || !gameName.trim()) {
+                alert('Game name is required');
+                return;
+            }
+            
+            if (!gameData.tracks || gameData.tracks.length === 0) {
+                alert('Game must have at least one track');
+                return;
+            }
+            
+            document.getElementById('publishModal').classList.add('active');
+        }
+        
+        function closePublishModal() {
+            document.getElementById('publishModal').classList.remove('active');
+        }
+        
+        async function confirmPublish() {
+            if (!currentSubmission) return;
+            
+            const modal = document.getElementById('publishModal');
+            const confirmBtn = modal.querySelector('.btn-confirm');
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Publishing...';
+            
+            try {
+                // TODO: Implement actual publish logic
+                // 1. Create entry in games table
+                // 2. Create entries in tracks table
+                // 3. Update submission status to 'published'
+                
+                alert('Publish workflow not yet fully implemented. This would:\n1. Create game entry\n2. Import tracks\n3. Update status to published');
+                
+                // For now, just update the status to published
+                const { error } = await supabaseAdmin.from('community_submissions')
+                    .update({
+                        status: 'published',
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('id', currentSubmission.id);
+                
+                if (error) throw new Error(error.message);
+                
+                closePublishModal();
+                alert('Submission published!');
+                await loadSubmissions();
+                showScreen('main');
+            } catch (e) {
+                alert('Error: ' + e.message);
+            } finally {
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = '🚀 Publish Now';
+            }
+        }
+        
+        function showScreen(name) {
+            Object.values(screens).forEach(s => s.classList.add('hidden'));
+            screens[name].classList.remove('hidden');
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+    <script src="../js/topbar.js"></script>
+</body>
+</html>

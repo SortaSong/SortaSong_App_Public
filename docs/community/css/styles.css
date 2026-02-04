@@ -1,0 +1,357 @@
+/* Community Page Styles (extends shared.css) */
+
+/* Override body to not conflict with shared.css */
+body {
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Controls Section */
+.controls-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--surface);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 1rem;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+}
+
+.filter-box select {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--surface-light);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* Grid Layout */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Game Card */
+.game-card {
+    background-color: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+}
+
+.game-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.game-title {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.badge {
+    background-color: var(--surface-light);
+    color: var(--text-secondary);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.game-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.game-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Stats Row */
+.game-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.btn-vote {
+    background-color: transparent;
+    border: 1px solid var(--gold-color);
+    color: var(--gold-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-vote:hover {
+    background-color: rgba(251, 191, 36, 0.1);
+}
+
+.btn-vote.voted {
+    background-color: var(--gold-color);
+    color: #0f172a;
+}
+
+.btn-vote i {
+    font-size: 1.1rem;
+}
+
+.download-stat {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Actions */
+.game-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-details, .btn-download {
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-details {
+    background-color: var(--surface-light);
+    color: var(--text-primary);
+}
+
+.btn-details:hover {
+    background-color: var(--border-color);
+}
+
+.btn-download {
+    background-color: var(--success-color);
+    color: #0f172a;
+}
+
+.btn-download:hover {
+    background-color: #16a34a;
+}
+
+/* Track List */
+.track-list-container {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
+    animation: fadeIn 0.3s ease;
+}
+
+.track-list-title {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.track-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.track-list li {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--surface-light);
+    display: flex;
+    gap: 10px;
+    color: var(--text-primary);
+}
+
+.track-list li:last-child {
+    border-bottom: none;
+}
+
+.track-list li:nth-child(even) {
+    background-color: var(--surface-light);
+}
+
+.track-year {
+    font-weight: bold;
+    color: var(--text-secondary);
+    min-width: 40px;
+}
+
+.track-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* States */
+.loading-state, .error-state, .no-results {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.loading-state i, .error-state i, .no-results i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    display: block;
+    color: var(--primary-color);
+}
+
+.error-state i {
+    color: var(--danger-color);
+}
+
+.btn-retry {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .controls-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-box {
+        justify-content: space-between;
+    }
+    
+    .filter-box select {
+        flex: 1;
+    }
+    
+    .game-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.sortasong.sortasong.data.CustomGameRepository
 import com.sortasong.sortasong.databinding.ActivityGameSelectionBinding
 
 class GameSelectionActivity : AppCompatActivity() {
@@ -24,25 +25,21 @@ class GameSelectionActivity : AppCompatActivity() {
         renderGameList()
 
         binding.confirmButton.setOnClickListener {
-            val selectedGames = mutableListOf<GameEntry>()
+            val selectedFolderNames = mutableListOf<String>()
 
-            for (i in 0 until checkBoxes.count()) {
-                val checkBox = checkBoxes[i]
+            for (checkBox in checkBoxes) {
                 if (checkBox.isChecked) {
-                    val gameName = checkBox.tag as String
-                    GameRepository.games.find { it.game == gameName }?.let {
-                        selectedGames.add(it)
-                    }
+                    val folderName = checkBox.tag as String
+                    selectedFolderNames.add(folderName)
                 }
             }
-            val selectedFolderNames = selectedGames.map { it.folderName }
 
             if (selectedFolderNames.isEmpty()) {
                 Toast.makeText(this, getString(R.string.game_selection_no_game_selected), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 🧠 Kartenstapel erstellen
+            // 🧠 Kartenstapel erstellen (includes both official and custom games)
             CardDeckRepository.createDeckFromFolders(selectedFolderNames)
 
             // 🚀 Spiel starten
@@ -55,26 +52,44 @@ class GameSelectionActivity : AppCompatActivity() {
     private fun renderGameList() {
         val container = binding.gameListContainer
         container.removeAllViews()
+        checkBoxes.clear()
 
-        val validGames = GameRepository.games.filter { game ->
+        // Get official games with tracks
+        val officialGames = GameRepository.games.filter { game ->
             GameRepository.tracksByFolder[game.folderName]?.isNotEmpty() == true
         }
-
-        validGames.forEach { game ->
-            val checkBox = CheckBox(this).apply {
-                layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                text = game.game
-                tag = game.game
-                setTextColor(Color.WHITE)
-                textSize = 20f
-                buttonTintList = ColorStateList.valueOf(Color.WHITE)
-            }
-            checkBoxes.add(checkBox)
-            container.addView(checkBox)
+        
+        // Get custom games with tracks
+        val customGames = CustomGameRepository.customGames.filter { game ->
+            CustomGameRepository.customTracksByFolder[game.folderName]?.isNotEmpty() == true
         }
+
+        // Render official games
+        officialGames.forEach { game ->
+            addGameCheckbox(container, game.game, game.folderName, isCustom = false)
+        }
+        
+        // Render custom games
+        customGames.forEach { game ->
+            addGameCheckbox(container, game.game, game.folderName, isCustom = true)
+        }
+    }
+    
+    private fun addGameCheckbox(container: LinearLayout, gameName: String, folderName: String, isCustom: Boolean) {
+        val displayName = if (isCustom) "⭐ $gameName" else gameName
+        val checkBox = CheckBox(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            text = displayName
+            tag = folderName  // Store folder name for deck creation
+            setTextColor(if (isCustom) Color.parseColor("#FFD700") else Color.WHITE)  // Gold for custom
+            textSize = 20f
+            buttonTintList = ColorStateList.valueOf(Color.WHITE)
+        }
+        checkBoxes.add(checkBox)
+        container.addView(checkBox)
     }
 
 }

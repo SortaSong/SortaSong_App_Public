@@ -238,6 +238,15 @@ header h2 {
     background: var(--surface-light);
 }
 
+.btn-share {
+    background: var(--gold-color);
+    color: #000;
+}
+
+.btn-share:hover {
+    background: #f59e0b;
+}
+
 .btn-danger {
     background: var(--danger-color);
     color: white;
@@ -370,6 +379,11 @@ header h2 {
     color: var(--text-secondary);
 }
 
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
 .empty-state.hidden {
     display: none;
 }
@@ -451,6 +465,96 @@ header h2 {
 
 .guide-content p {
     color: var(--text-secondary);
+}
+
+/* Share Modal */
+.share-content {
+    margin-top: 1rem;
+}
+
+.share-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.share-form {
+    background: var(--background);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.share-info {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.share-info label {
+    color: var(--text-secondary);
+    min-width: 120px;
+}
+
+.share-info span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.share-form .form-group {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.share-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    resize: vertical;
+}
+
+.share-note {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 8px;
+}
+
+.share-note p {
+    color: var(--warning-color);
+    font-size: 0.875rem;
+}
+
+.share-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+.share-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.share-success {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.share-success p {
+    color: var(--success-color);
+}
+
+.share-error {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.share-error p {
+    color: var(--danger-color);
 }
 
 /* Add Track Modal */

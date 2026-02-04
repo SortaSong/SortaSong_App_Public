@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong Community Playlists</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link">🎨 <span class="link-text" data-i18n="nav_editor">Editor</span></a>
+            <a href="../community/" class="top-bar-link active">🌍 <span class="link-text" data-i18n="nav_community">Community</span></a>
+            <a href="../check-status/" class="top-bar-link">📊 <span class="link-text" data-i18n="nav_status">Status</span></a>
+            
+            <div class="top-bar-divider admin-only"></div>
+            <a href="../admin/" class="top-bar-link admin-only">🔧 <span class="link-text" data-i18n="nav_reports">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link admin-only">📋 <span class="link-text" data-i18n="nav_submissions">Submissions</span></a>
+            
+            <!-- Language Switcher -->
+            <div class="top-bar-divider"></div>
+            <button class="lang-btn active" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-users"></i> <span data-i18n="community_title">Community Playlists</span></h1>
+            <p data-i18n="community_subtitle">Entdecke von der Community erstellte Spiele für SortaSong</p>
+        </div>
+
+        <div class="controls-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Suche nach Spielen...">
+            </div>
+            
+            <div class="filter-box">
+                <label for="sortOrder" data-i18n="sort_label">Sortieren nach:</label>
+                <select id="sortOrder">
+                    <option value="newest" data-i18n="sort_newest">Neueste zuerst</option>
+                    <option value="votes" data-i18n="sort_votes">Meiste Stimmen</option>
+                    <option value="downloads" data-i18n="sort_downloads">Meiste Downloads</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="loadingState" class="loading-state">
+            <i class="fas fa-spinner fa-spin"></i> <span data-i18n="loading_games">Lade Community-Spiele...</span>
+        </div>
+
+        <div id="errorState" class="error-state" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="errorMessage" data-i18n="error_loading">Fehler beim Laden der Daten.</span>
+            <button id="retryBtn" class="btn-retry" data-i18n="retry">Erneut versuchen</button>
+        </div>
+
+        <div id="gamesGrid" class="games-grid">
+            <!-- Games will be loaded here -->
+        </div>
+        
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p data-i18n="no_games">Noch keine Community-Spiele verfügbar.</p>
+            <a href="../editor/" data-i18n="create_first">Erstelle das erste!</a>
+        </div>
+    </div>
+
+    <!-- Template for Game Card -->
+    <template id="gameCardTemplate">
+        <div class="game-card">
+            <div class="game-header">
+                <h2 class="game-title"></h2>
+                <div class="game-badges">
+                    <span class="badge badge-tracks"><i class="fas fa-music"></i> <span class="track-count"></span> <span data-i18n="tracks_count">Tracks</span></span>
+                </div>
+            </div>
+            
+            <div class="game-info">
+                <p class="game-description"></p>
+                <div class="game-meta">
+                    <span class="submitted-by"><i class="fas fa-user"></i> <span class="submitter-name"></span></span>
+                    <span class="submitted-date"><i class="fas fa-calendar-alt"></i> <span class="date-value"></span></span>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <button class="btn-vote" title="Für dieses Spiel abstimmen">
+                    <i class="far fa-star"></i> <span class="vote-count">0</span>
+                </button>
+                <div class="download-stat" title="Anzahl Downloads">
+                    <i class="fas fa-download"></i> <span class="download-count">0</span>
+                </div>
+            </div>
+            
+            <div class="game-actions">
+                <button class="btn-details">
+                    <i class="fas fa-list"></i> <span data-i18n="btn_tracklist">Trackliste</span>
+                </button>
+                <button class="btn-download">
+                    <i class="fas fa-file-download"></i> <span data-i18n="btn_download">game_info.json</span>
+                </button>
+            </div>
+            
+            <div class="track-list-container" style="display: none;">
+                <h3 class="track-list-title" data-i18n="tracks_title">Enthaltene Songs:</h3>
+                <ul class="track-list"></ul>
+            </div>
+        </div>
+    </template>
+
+    <script src="../js/i18n-shared.js"></script>
+    <script src="../js/topbar.js"></script>
+    <script src="js/community.js"></script>
+</body>
+</html>

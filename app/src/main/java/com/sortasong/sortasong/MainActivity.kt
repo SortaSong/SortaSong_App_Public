@@ -12,6 +12,7 @@ import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sortasong.sortasong.data.CustomGameRepository
 import com.sortasong.sortasong.databinding.ActivityLoadingBinding
 import com.sortasong.sortasong.databinding.ActivitySetupBinding
 import com.sortasong.sortasong.databinding.ActivityStartBinding
@@ -135,6 +136,12 @@ class MainActivity : AppCompatActivity() {
                         )
                         Log.d("MainActivity", "Filtered to ${existingFolders.size} existing folders")
                     }
+                    
+                    // Scan for custom games
+                    val officialFolderNames = GameRepository.games.map { it.folderName }.toSet()
+                    CustomGameRepository.setOfficialFolderNames(officialFolderNames)
+                    val customGameCount = CustomGameRepository.scanForCustomGames(this@MainActivity, uri)
+                    Log.d("MainActivity", "Found $customGameCount custom games")
 
                     showStartScreen(uri, fromCache = hasCache || result is LoadResult.OfflineMode)
 
@@ -222,6 +229,11 @@ class MainActivity : AppCompatActivity() {
         }
         binding.withoutCardsButton.setOnClickListener {
             launchGame(withCards = false)
+        }
+        
+        // Manage custom games button
+        binding.manageCustomGamesButton.setOnClickListener {
+            startActivity(Intent(this, ManageCustomGamesActivity::class.java))
         }
 
         // Settings button

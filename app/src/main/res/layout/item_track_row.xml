@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="#1e293b"
+    android:padding="8dp"
+    android:layout_marginBottom="2dp">
+
+    <!-- Artist -->
+    <TextView
+        android:id="@+id/artistText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingStart="8dp"
+        android:paddingEnd="4dp" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingEnd="4dp" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <!-- Year -->
+    <TextView
+        android:id="@+id/yearText"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:gravity="center" />
+
+    <!-- Delete Button -->
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@android:drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/manage_games_delete"
+        android:padding="8dp" />
+
+</LinearLayout>

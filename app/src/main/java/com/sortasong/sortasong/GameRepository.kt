@@ -29,7 +29,8 @@ data class TrackEntry(
     val releaseDate: String,
     val releaseYear: Int?,
     val folderName: String,
-    val fileAvailability: FileAvailability = FileAvailability.NOT_VERIFIED
+    val fileAvailability: FileAvailability = FileAvailability.NOT_VERIFIED,
+    val originalFileName: String? = null  // For custom games with non-standard filenames
 ) : Serializable
 
 sealed class LoadResult {
@@ -315,11 +316,11 @@ object GameRepository {
     }
 
     /**
-     * Get verification status for all games.
+     * Get verification status for all games (official + custom).
      * Returns list of GameVerificationStatus sorted by game name.
      */
     fun getAllGameVerificationStatuses(): List<GameVerificationStatus> {
-        return games.map { game ->
+        val officialStatuses = games.map { game ->
             val stats = getVerificationStats(game.folderName)
             val totalTracks = tracksByFolder[game.folderName]?.size ?: 0
 
@@ -328,9 +329,27 @@ object GameRepository {
                 totalTracks = totalTracks,
                 availableTracks = stats[FileAvailability.AVAILABLE] ?: 0,
                 unavailableTracks = stats[FileAvailability.UNAVAILABLE] ?: 0,
-                notVerifiedTracks = stats[FileAvailability.NOT_VERIFIED] ?: 0
+                notVerifiedTracks = stats[FileAvailability.NOT_VERIFIED] ?: 0,
+                isCustom = false
             )
-        }.sortedBy { it.game.game }
+        }
+        
+        // Add custom games
+        val customStatuses = com.sortasong.sortasong.data.CustomGameRepository.customGames.map { game ->
+            val tracks = com.sortasong.sortasong.data.CustomGameRepository.customTracksByFolder[game.folderName] ?: emptyList()
+            val stats = tracks.groupingBy { it.fileAvailability }.eachCount()
+            
+            GameVerificationStatus(
+                game = game,
+                totalTracks = tracks.size,
+                availableTracks = stats[FileAvailability.AVAILABLE] ?: 0,
+                unavailableTracks = stats[FileAvailability.UNAVAILABLE] ?: 0,
+                notVerifiedTracks = stats[FileAvailability.NOT_VERIFIED] ?: 0,
+                isCustom = true
+            )
+        }
+        
+        return (officialStatuses + customStatuses).sortedBy { it.game.game }
     }
 
     private fun CachedGame.toGameEntry() = GameEntry(
@@ -475,14 +494,8 @@ object GameRepository {
         return null
     }
     fun getFolderForTrack(track: TrackEntry): String {
-        // Suche das GameEntry, dessen Tracks die TrackEntry enthalten
-        for (game in games) {
-            val tracks = tracksByFolder[game.folderName] ?: continue
-            if (tracks.any { it == track }) {
-                return game.folderName
-            }
-        }
-        return ""
+        // TrackEntry already has folderName
+        return track.folderName
     }
 
     fun getFileUriWithConfidenceAndBoost(

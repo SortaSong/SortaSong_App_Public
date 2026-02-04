@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong - Custom Game Editor</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 SortaSong</h1>
+            <h2>Custom Game Editor</h2>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </header>
+
+        <!-- Hidden file input for Firefox fallback -->
+        <input type="file" id="folder-input" webkitdirectory multiple style="display: none;">
+        <input type="file" id="json-input" accept=".json" style="display: none;">
+
+        <!-- Step 1: Workflow Selection -->
+        <section id="step-workflow" class="step active">
+            <h3 data-i18n="workflow_title">Wie möchtest du beginnen?</h3>
+            <div class="workflow-options">
+                <button class="workflow-btn" data-workflow="scratch">
+                    <span class="icon">📝</span>
+                    <span class="title" data-i18n="workflow_scratch">Komplett neu starten</span>
+                    <span class="desc" data-i18n="workflow_scratch_desc">Erstelle ein neues Spiel von Grund auf</span>
+                </button>
+                <button class="workflow-btn" data-workflow="folder">
+                    <span class="icon">📁</span>
+                    <span class="title" data-i18n="workflow_folder">Ordner mit Songs auswählen</span>
+                    <span class="desc" data-i18n="workflow_folder_desc">Metadaten aus vorhandenen Musikdateien lesen</span>
+                </button>
+                <button class="workflow-btn" data-workflow="existing">
+                    <span class="icon">✏️</span>
+                    <span class="title" data-i18n="workflow_existing">Bestehendes Spiel bearbeiten</span>
+                    <span class="desc" data-i18n="workflow_existing_desc">game_info.json aus einem Ordner laden</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Step 2: Game Metadata -->
+        <section id="step-metadata" class="step">
+            <h3 data-i18n="metadata_title">Spiel-Informationen</h3>
+            <form id="metadata-form">
+                <div class="form-group">
+                    <label for="game-name" data-i18n="game_name">Spielname *</label>
+                    <input type="text" id="game-name" required placeholder="z.B. 80er Hits">
+                </div>
+                <div class="form-group">
+                    <label for="folder-name" data-i18n="folder_name">Ordnername *</label>
+                    <input type="text" id="folder-name" required placeholder="z.B. 80er_Hits">
+                    <small data-i18n="folder_name_hint">Keine Leerzeichen oder Sonderzeichen</small>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="has_cards">Hast du physische Spielkarten?</label>
+                    <div class="toggle-group">
+                        <button type="button" class="toggle-btn" data-value="false" data-i18n="no">Nein</button>
+                        <button type="button" class="toggle-btn" data-value="true" data-i18n="yes">Ja</button>
+                    </div>
+                </div>
+                <div class="form-group card-fields" style="display: none;">
+                    <label for="link-identifier" data-i18n="link_identifier">Link-Kennung (QR-Code)</label>
+                    <input type="text" id="link-identifier" placeholder="z.B. custom_80er">
+                </div>
+                <div class="form-group card-fields" style="display: none;">
+                    <label for="card-url" data-i18n="card_url">Link zum Karten-Kauf</label>
+                    <input type="url" id="card-url" placeholder="https://...">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-back-workflow" data-i18n="back">Zurück</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="continue">Weiter</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Step 3: Track Editor -->
+        <section id="step-editor" class="step">
+            <div class="editor-toolbar">
+                <div class="toolbar-left">
+                    <button type="button" class="btn btn-secondary" id="btn-back-metadata">
+                        <span>←</span> <span data-i18n="back">Zurück</span>
+                    </button>
+                    <h3 data-i18n="editor_title">Tracks bearbeiten</h3>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-secondary" id="btn-scan-folder" data-i18n="scan_folder">📁 Ordner scannen</button>
+                    <button class="btn btn-secondary" id="btn-add-track" data-i18n="add_track">➕ Track hinzufügen</button>
+                    <button type="button" class="btn btn-primary" id="btn-save" data-i18n="save">💾 Speichern</button>
+                </div>
+            </div>
+            
+            <div class="tracks-container">
+                <table id="tracks-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th data-i18n="col_artist">Künstler</th>
+                            <th data-i18n="col_title">Titel</th>
+                            <th data-i18n="col_date">Erscheinungsdatum</th>
+                            <th data-i18n="col_year">Jahr</th>
+                            <th data-i18n="col_filename">Dateiname</th>
+                            <th data-i18n="col_actions">Aktionen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tracks-body">
+                        <!-- Tracks will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div class="empty-state" id="empty-state">
+                    <p data-i18n="no_tracks">Noch keine Tracks. Füge Tracks hinzu oder scanne einen Ordner.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transfer Guide Modal -->
+        <div id="guide-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 data-i18n="guide_title">Anleitung: Spiel auf Handy übertragen</h3>
+                <div class="guide-content">
+                    <h4 data-i18n="guide_step1_title">Schritt 1: Ordner vorbereiten</h4>
+                    <p data-i18n="guide_step1">Stelle sicher, dass dein Spielordner die game_info.json und alle Musikdateien enthält.</p>
+                    
+                    <h4 data-i18n="guide_step2_title">Schritt 2: Auf Handy kopieren</h4>
+                    <p data-i18n="guide_step2">Verbinde dein Handy per USB-Kabel und kopiere den gesamten Spielordner in deinen SortaSong-Musikordner.</p>
+                    
+                    <h4 data-i18n="guide_step3_title">Schritt 3: App aktualisieren</h4>
+                    <p data-i18n="guide_step3">Öffne SortaSong und gehe zu Einstellungen → "Ordner neu scannen". Dein Spiel erscheint mit einem ⭐.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Track Modal -->
+        <div id="add-track-modal" class="modal">
+            <div class="modal-content modal-large">
+                <span class="close">&times;</span>
+                <h3 data-i18n="add_track_title">Track hinzufügen</h3>
+                
+                <div class="add-track-options">
+                    <button class="btn btn-secondary" id="btn-add-empty-track">
+                        <span>📝</span>
+                        <span data-i18n="add_empty_track">Neuen Track erstellen</span>
+                    </button>
+                    <div class="divider"><span data-i18n="or">oder</span></div>
+                </div>
+                
+                <div class="track-search">
+                    <input type="text" id="track-search-input" data-i18n-placeholder="search_tracks" placeholder="Suche nach Künstler oder Titel...">
+                </div>
+                
+                <div class="track-results" id="track-results">
+                    <div class="loading-state" id="tracks-loading">
+                        <span data-i18n="loading_tracks">Lade Tracks...</span>
+                    </div>
+                    <div class="track-list" id="track-list"></div>
+                    <div class="load-more" id="load-more" style="display: none;">
+                        <button class="btn btn-secondary" id="btn-load-more" data-i18n="load_more">Mehr laden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/supabase-tracks.js"></script>
+    <script src="js/metadata-reader.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+</html>

@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SortaSong - Custom Game Editor</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🎵 SortaSong</h1>
-            <h2>Custom Game Editor</h2>
-            <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="de">DE</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-            </div>
-        </header>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link active">🎨 <span class="link-text">Editor</span></a>
+            <a href="../community/" class="top-bar-link">🌍 <span class="link-text">Community</span></a>
+            <a href="../check-status/" class="top-bar-link">📊 <span class="link-text">Status</span></a>
+            
+            <div class="top-bar-divider admin-only"></div>
+            <a href="../admin/" class="top-bar-link admin-only">🔧 <span class="link-text">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link admin-only">📋 <span class="link-text">Submissions</span></a>
+            
+            <!-- Language Switcher -->
+            <div class="top-bar-divider"></div>
+            <button class="lang-btn active" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </nav>
 
+    <div class="container">
         <!-- Hidden file input for Firefox fallback -->
         <input type="file" id="folder-input" webkitdirectory multiple style="display: none;">
         <input type="file" id="json-input" accept=".json" style="display: none;">
@@ -91,6 +105,7 @@
                     <button class="btn btn-secondary" id="btn-scan-folder" data-i18n="scan_folder">📁 Ordner scannen</button>
                     <button class="btn btn-secondary" id="btn-add-track" data-i18n="add_track">➕ Track hinzufügen</button>
                     <button type="button" class="btn btn-primary" id="btn-save" data-i18n="save">💾 Speichern</button>
+                    <button type="button" class="btn btn-share" id="btn-share" data-i18n="share_community">🌐 Community teilen</button>
                 </div>
             </div>
             
@@ -135,6 +150,54 @@
             </div>
         </div>
 
+        <!-- Share with Community Modal -->
+        <div id="share-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 data-i18n="share_title">🌐 Mit Community teilen</h3>
+                
+                <div class="share-content">
+                    <p data-i18n="share_desc">Teile dein Spiel mit anderen SortaSong-Spielern! Nach einer kurzen Überprüfung wird dein Spiel für alle verfügbar.</p>
+                    
+                    <div class="share-form">
+                        <div class="share-info">
+                            <label data-i18n="share_game_name">Spielname:</label>
+                            <span id="share-game-name">-</span>
+                        </div>
+                        <div class="share-info">
+                            <label data-i18n="share_track_count">Anzahl Tracks:</label>
+                            <span id="share-track-count">0</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="share-description" data-i18n="share_description_label">Beschreibung (optional)</label>
+                            <textarea id="share-description" rows="3" data-i18n-placeholder="share_description_placeholder" placeholder="z.B. 'Pop Hits der 80er und 90er'"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="submitterName">Ihr Name (optional, wird öffentlich angezeigt)</label>
+                            <input type="text" id="submitterName" placeholder="z.B. Max Mustermann" maxlength="50">
+                            <small style="color: #6b7280; font-size: 0.875rem;">Lassen Sie dies leer, wenn Sie anonym bleiben möchten</small>
+                        </div>
+                    </div>
+                    
+                    <div class="share-actions">
+                        <button class="btn btn-secondary" id="btn-cancel-share" data-i18n="cancel">Abbrechen</button>
+                        <button class="btn btn-primary" id="btn-submit-share" data-i18n="submit_share">📤 Einreichen</button>
+                    </div>
+                    
+                    <div id="share-status" style="display: none; margin-top: 1rem;">
+                        <div id="share-success" style="display: none; padding: 1rem; background: #d1fae5; border-radius: 8px; color: #065f46;">
+                            <!-- Success content inserted by JS -->
+                        </div>
+                        <div id="share-error" style="display: none; padding: 1rem; background: #fee2e2; border-radius: 8px; color: #991b1b;">
+                            <!-- Error content inserted by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Add Track Modal -->
         <div id="add-track-modal" class="modal">
             <div class="modal-content modal-large">
@@ -166,6 +229,7 @@
         </div>
     </div>
 
+    <script src="../js/topbar.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/supabase-tracks.js"></script>
     <script src="js/metadata-reader.js"></script>

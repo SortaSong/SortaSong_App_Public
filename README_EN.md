@@ -28,6 +28,28 @@ SortaSong offers two distinct play modes:
 * Select from available game packs
 * No physical materials needed
 
+### ⭐ Create Custom Games
+
+* **Create your own game packs** with your music collection
+* **In-App Editor** for creating and editing games on your phone
+* **Web Editor** for more comfortable editing on PC: [sortasong.github.io/SortaSong_App_Public/editor/](https://sortasong.github.io/SortaSong_App_Public/editor/)
+* Auto-scan audio files for metadata (Artist, Title, Year)
+* Supports MP3, M4A, FLAC, OGG, WAV, AAC files
+* Easy transfer between phone and PC - just copy the folder
+
+### 🌐 Community Games
+
+* **Share your games with the community** - submit your own game packs
+* **Discover community games** - download games created by other players
+* **Vote for games** - rate your favorites
+* **Track your submissions** - see the status of your submitted games
+* Browse community games: [sortasong.github.io/SortaSong_App_Public/community/](https://sortasong.github.io/SortaSong_App_Public/community/)
+
+### 🐛 Report Issues
+
+* Report incorrect track data directly from the result popup
+* Submit corrections for Artist, Title, Date, or Year
+
 ## Prerequisites
 
 * **Android Studio**: Arctic Fox or newer
@@ -49,7 +71,6 @@ On first launch, you'll be prompted to select a folder containing your game data
 
 The app expects a specific folder structure. The app will create folders for all games you select.
 It can give you a list of songs it expects in those folders.
-Songs should have the filename as Artist - Title.
 The supported games and tracklists can be found in the [Available Games section](#-available-games--tracklists) below.
 
 ### Playing With Cards

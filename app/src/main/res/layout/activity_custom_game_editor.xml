@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editor_back"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/editor_title"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editor_save"
+            android:backgroundTint="@color/sortasound_primary" />
+    </LinearLayout>
+
+    <!-- Game Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editor_game_name"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/gameNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/editor_game_name_hint"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:backgroundTint="@android:color/white"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Folder Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editor_folder_name"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/folderNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/editor_folder_name_hint"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:backgroundTint="@android:color/white"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Select Folder Button -->
+    <Button
+        android:id="@+id/selectFolderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/editor_select_folder"
+        android:textSize="16sp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Track Count -->
+    <TextView
+        android:id="@+id/trackCountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/track_editor_track_count"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Edit Tracklist Button -->
+    <Button
+        android:id="@+id/editTracklistButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/track_editor_edit_review"
+        android:textSize="16sp"
+        android:backgroundTint="@color/sortasound_primary" />
+
+    <!-- Share with Community Button -->
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/share_with_community"
+        android:textSize="16sp"
+        android:backgroundTint="#22c55e"
+        android:layout_marginTop="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

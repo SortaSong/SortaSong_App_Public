@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong Admin - Track Reports</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link">🎨 <span class="link-text">Editor</span></a>
+            <a href="../community/" class="top-bar-link">🌍 <span class="link-text">Community</span></a>
+            <a href="../check-status/" class="top-bar-link">📊 <span class="link-text">Status</span></a>
+            
+            <div class="top-bar-divider"></div>
+            <a href="../admin/" class="top-bar-link active">🔧 <span class="link-text">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link">📋 <span class="link-text">Submissions</span></a>
+        </div>
+    </nav>
+
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen">
+            <div class="login-container">
+                <h1>🔐 SortaSong Admin</h1>
+                <p>Track Reports Management</p>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="admin@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Your password">
+                </div>
+                
+                <button id="loginBtn" class="btn-primary">🔑 Login</button>
+                
+                <p class="hint">💡 Create an admin user in Supabase Auth, then run admin_policies.sql</p>
+            </div>
+        </div>
+
+        <!-- Main Screen - Track List -->
+        <div id="mainScreen" class="screen hidden">
+            <div class="admin-header">
+                <h1>📋 Track Reports</h1>
+                <div class="header-actions">
+                    <span id="reportCount">0 tracks with reports</span>
+                    <button id="refreshBtn" class="btn-secondary">🔄 Refresh</button>
+                    <button id="logoutBtn" class="btn-secondary">🚪 Logout</button>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <label>
+                    <input type="checkbox" id="showPendingOnly" checked>
+                    Show pending only
+                </label>
+                <input type="text" id="searchInput" placeholder="🔍 Search by track ID, artist, or title...">
+            </div>
+
+            <div id="trackList" class="track-list">
+                <!-- Track items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Detail Screen - Track Reports -->
+        <div id="detailScreen" class="screen hidden">
+            <header>
+                <button id="backBtn" class="btn-secondary">← Back</button>
+                <h1>Track #<span id="trackIdDisplay">0</span></h1>
+                <button id="saveBtn" class="btn-primary">💾 Save & Mark Done</button>
+            </header>
+
+            <div class="detail-container">
+                <!-- Current Track Data -->
+                <section class="current-data">
+                    <h2>📀 Current Track Data (editable)</h2>
+                    <div class="data-row header-row">
+                        <span class="col-artist">Artist</span>
+                        <span class="col-title">Title</span>
+                        <span class="col-date">Release Date</span>
+                        <span class="col-year">Year</span>
+                    </div>
+                    <div class="data-row editable-row" id="currentDataRow">
+                        <input type="text" id="currentArtist" class="col-artist">
+                        <input type="text" id="currentTitle" class="col-title">
+                        <input type="text" id="currentDate" class="col-date">
+                        <input type="number" id="currentYear" class="col-year">
+                    </div>
+                </section>
+
+                <!-- Submitted Reports -->
+                <section class="reports-section">
+                    <h2>📝 Submitted Reports (<span id="submissionCount">0</span>)</h2>
+                    <div class="data-row header-row">
+                        <span class="col-artist">Artist</span>
+                        <span class="col-title">Title</span>
+                        <span class="col-date">Release Date</span>
+                        <span class="col-year">Year</span>
+                        <span class="col-meta">Submitted</span>
+                        <span class="col-status">Status</span>
+                    </div>
+                    <div id="reportsList">
+                        <!-- Report rows will be inserted here -->
+                    </div>
+                </section>
+
+                <!-- Original Data Reference -->
+                <section class="original-data">
+                    <h2>📌 Original Track Data (read-only)</h2>
+                    <div class="data-row original-row" id="originalDataRow">
+                        <span class="col-artist" id="originalArtist">-</span>
+                        <span class="col-title" id="originalTitle">-</span>
+                        <span class="col-date" id="originalDate">-</span>
+                        <span class="col-year" id="originalYear">-</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/topbar.js"></script>
+    <script src="js/supabase-admin.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

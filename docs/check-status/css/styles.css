@@ -1,0 +1,321 @@
+/* Check Status Page Styles (extends shared.css) */
+
+/* Override body */
+body {
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Card */
+.card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--surface-light);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+}
+
+/* Error Message */
+.error-message {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid var(--danger-color);
+}
+
+/* Status Header */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: var(--warning-color);
+    color: #0f172a;
+}
+
+.status-badge.in_progress {
+    background: #3b82f6;
+    color: white;
+}
+
+.status-badge.approved {
+    background: var(--success-color);
+    color: #0f172a;
+}
+
+.status-badge.published {
+    background: #8b5cf6;
+    color: white;
+}
+
+.status-badge.rejected {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Status Details */
+.status-details {
+    background: var(--surface-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.detail-row .value {
+    color: var(--text-primary);
+}
+
+/* Info Box */
+.info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-box.success {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.info-box.error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.info-box h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.info-box p {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* Rejection Reason */
+.rejection-reason {
+    background: var(--surface-light);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 0.5rem 0;
+    font-style: italic;
+    border-left: 3px solid var(--danger-color);
+    color: var(--text-secondary);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Help Section */
+.help-section details {
+    margin-bottom: 1rem;
+}
+
+.help-section summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.75rem;
+    background: var(--surface-light);
+    border-radius: 6px;
+    user-select: none;
+    color: var(--text-primary);
+}
+
+.help-section summary:hover {
+    background: var(--border-color);
+}
+
+.help-section details[open] summary {
+    margin-bottom: 0.75rem;
+}
+
+.help-section p, .help-section ul {
+    margin-left: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.help-section ul {
+    list-style-position: inside;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .card {
+        padding: 1.5rem;
+    }
+
+    .status-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortaSong - Submission Bearbeiten</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <a href="../" class="top-bar-logo">
+            <img src="../img/logo.png" alt="SortaSong">
+        </a>
+        <div class="top-bar-nav">
+            <a href="../editor/" class="top-bar-link">🎨 <span class="link-text">Editor</span></a>
+            <a href="../community/" class="top-bar-link">🌍 <span class="link-text">Community</span></a>
+            <a href="../check-status/" class="top-bar-link">📊 <span class="link-text">Status</span></a>
+            
+            <div class="top-bar-divider admin-only"></div>
+            <a href="../admin/" class="top-bar-link admin-only">🔧 <span class="link-text">Reports</span></a>
+            <a href="../admin-submissions/" class="top-bar-link admin-only">📋 <span class="link-text">Submissions</span></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>✏️ Submission Bearbeiten</h1>
+            <p>Bearbeiten Sie Ihre eingereichte Playlist.</p>
+        </div>
+
+        <!-- Login Form (only shown if no valid session) -->
+        <section id="loginSection" class="card">
+            <h2>Anmelden</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="token">Submission Token</label>
+                    <input 
+                        type="text" 
+                        id="token" 
+                        placeholder="A3B7C9D2E5F1" 
+                        maxlength="32"
+                        required
+                        pattern="[A-Z0-9]+"
+                        style="text-transform: uppercase; font-family: monospace; font-size: 1.2em;"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Passwort</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="****************" 
+                        maxlength="16"
+                        required
+                        style="font-family: monospace;"
+                    >
+                </div>
+
+                <button type="submit" class="btn-primary">Editor öffnen</button>
+            </form>
+            <div id="loginError" class="error-message" style="display: none;"></div>
+        </section>
+
+        <!-- Editor Section -->
+        <section id="editorSection" class="card" style="display: none;">
+            <div class="warning-banner">
+                <h3>⚠️ Achtung</h3>
+                <p>Wenn Sie Änderungen speichern, wird der Status Ihrer Submission auf <strong>Pending</strong> zurückgesetzt und muss erneut überprüft werden.</p>
+            </div>
+
+            <div class="game-info-form">
+                <div class="form-group">
+                    <label for="gameName">Spielname</label>
+                    <input type="text" id="gameName" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Beschreibung</label>
+                    <textarea id="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="submitterName">Ihr Name (optional)</label>
+                    <input type="text" id="submitterName">
+                </div>
+            </div>
+
+            <h3>Tracks</h3>
+            <div class="tracks-container">
+                <table id="tracks-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Künstler</th>
+                            <th>Titel</th>
+                            <th>Erscheinungsdatum</th>
+                            <th>Jahr</th>
+                            <th>Aktionen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tracks-body">
+                        <!-- Tracks will be rendered here -->
+                    </tbody>
+                </table>
+                <button id="addTrackBtn" class="btn-secondary" style="margin-top: 1rem;">➕ Track hinzufügen</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="saveBtn" class="btn-primary">💾 Änderungen speichern</button>
+                <button id="cancelBtn" class="btn-secondary">Abbrechen</button>
+            </div>
+            
+            <div id="saveError" class="error-message" style="display: none;"></div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/topbar.js"></script>
+    <script src="js/edit-submission.js"></script>
+</body>
+</html>

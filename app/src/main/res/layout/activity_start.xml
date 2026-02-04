@@ -60,29 +60,29 @@
     <Button
         android:id="@+id/withCardsButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="@string/activity_start_with_cards"
-        android:layout_marginBottom="12dp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeMaxTextSize="180sp"
-        android:autoSizeStepGranularity="1sp"
-        android:maxLines="1"
+        android:layout_marginBottom="8dp"
+        android:textSize="16sp"
         android:backgroundTint="@color/sortasound_primary" />
 
     <!-- Button: Ohne Karten -->
     <Button
         android:id="@+id/withoutCardsButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="@string/activity_start_without_cards"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeMaxTextSize="180sp"
-        android:autoSizeStepGranularity="1sp"
-        android:maxLines="1"
+        android:layout_marginBottom="8dp"
+        android:textSize="16sp"
         android:backgroundTint="@color/sortasound_primary" />
+
+    <!-- Button: Eigene Spiele verwalten -->
+    <Button
+        android:id="@+id/manageCustomGamesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_start_manage_custom_games"
+        android:textSize="16sp"
+        android:backgroundTint="@android:color/darker_gray" />
 
 </LinearLayout>

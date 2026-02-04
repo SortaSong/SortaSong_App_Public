@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_dialog_title"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Artist -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_artist_label"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/editArtist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:inputType="text"
+            android:background="#1a1a1a"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Title/Song -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_title_label"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/editTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:inputType="text"
+            android:background="#1a1a1a"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Release Date -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_release_date_label"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/editReleaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:inputType="text"
+            android:hint="@string/report_release_date_hint"
+            android:background="#1a1a1a"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Release Year -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_year_label"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/editYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:inputType="number"
+            android:hint="@string/report_year_hint"
+            android:background="#1a1a1a"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Optional Comment -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report_comment_label"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/editComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/report_comment_hint"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:background="#1a1a1a"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_cancel"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_submit" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

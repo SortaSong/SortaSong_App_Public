@@ -29,6 +29,7 @@
 
     <string name="activity_start_with_cards">Play with cards</string>
     <string name="activity_start_without_cards">Play without cards</string>
+    <string name="activity_start_create_custom_game">⭐ Create custom game</string>
 
     <string name="activity_setup_choose_folder_prompt">Please choose the game folder</string>
     <string name="activity_setup_choose_folder_button">Choose folder</string>
@@ -94,7 +95,7 @@
 
     <string name="player_setup_selected_games_prefix">Selected games: %1$s</string>
 
-    <string name="track_sort_placeholder">🎕 ???</string>
+    <string name="track_sort_placeholder">---???---</string>
     <string name="track_sort_item_format">[%1$s] %2$s – %3$s</string>
 
     <string name="qrscan_game_not_loaded">⚠️ Game not loaded. Please restart app or re-select folder.</string>
@@ -119,4 +120,156 @@
     <string name="actitvity_missing_tracks_clodeButton_default">close</string>
     <string name="loadingText_default">loading data…</string>
     <string name="activity_gameplay_without_cards_startGameButton_default">Ready?</string>
+
+    <!-- Report Issue Dialog -->
+    <string name="popup_report_issue">Report Issue</string>
+    <string name="report_dialog_title">Correct Data</string>
+    <string name="report_artist_label">Artist</string>
+    <string name="report_title_label">Title</string>
+    <string name="report_release_date_label">Release Date</string>
+    <string name="report_release_date_hint">e.g. 03/15/1985</string>
+    <string name="report_year_label">Year</string>
+    <string name="report_year_hint">e.g. 1985</string>
+    <string name="report_comment_label">Comment (optional)</string>
+    <string name="report_comment_hint">Additional information…</string>
+    <string name="report_cancel">Cancel</string>
+    <string name="report_submit">Submit</string>
+    <string name="report_submitted">Correction submitted, thank you!</string>
+    <string name="report_duplicate">This correction has already been reported</string>
+    <string name="report_failed">Submission failed: %1$s</string>
+    <string name="report_no_changes">No changes made</string>
+
+    <!-- Custom Game Editor -->
+    <string name="activity_settings_custom_games_section">Custom Games</string>
+    <string name="activity_settings_create_custom_game">Create Custom Game</string>
+    <string name="editor_no_folder_selected">No folder selected</string>
+    <string name="editor_cannot_write">Cannot write to folder</string>
+    <string name="editor_saved_success">Game saved successfully!</string>
+    <string name="editor_save_error">Error saving: %1$s</string>
+    <string name="editor_title">Create Custom Game</string>
+    <string name="editor_back">← Back</string>
+    <string name="editor_save">💾 Save</string>
+    <string name="editor_game_name">Game Name</string>
+    <string name="editor_game_name_hint">e.g. 80s Hits</string>
+    <string name="editor_folder_name">Folder Name</string>
+    <string name="editor_folder_name_hint">e.g. 80s_Hits</string>
+    <string name="editor_select_folder">📁 Select Folder</string>
+    <string name="editor_scan_folder">🔍 Scan Folder</string>
+    <string name="editor_add_track">➕ Add Track</string>
+    <string name="editor_no_tracks">No tracks yet.\nAdd tracks or scan a folder.</string>
+    <string name="editor_artist_hint">Artist</string>
+    <string name="editor_title_hint">Title</string>
+    <string name="editor_date_hint">DD.MM.YYYY</string>
+    <string name="editor_year_hint">Year</string>
+    <string name="editor_folder_selected">Folder: %1$s</string>
+    <string name="editor_tracks_found">%1$d tracks found</string>
+    <string name="editor_no_audio_files">No audio files found</string>
+    <string name="editor_fill_required">Please fill in game name and folder name</string>
+    <string name="editor_add_tracks_first">Please add at least one track</string>
+    <string name="editor_select_folder_first">Please select a folder first</string>
+    
+    <!-- Manage Custom Games -->
+    <string name="activity_start_manage_custom_games">⭐ Manage Custom Games</string>
+    <string name="manage_games_title">Custom Games</string>
+    <string name="manage_games_create">➕ Create New Game</string>
+    <string name="manage_games_no_games">No custom games yet.\nCreate your first game!</string>
+    <string name="manage_games_edit">Edit</string>
+    <string name="manage_games_delete">Delete</string>
+    <string name="manage_games_delete_confirm_title">Delete game?</string>
+    <string name="manage_games_delete_confirm_message">Do you really want to delete \"%1$s\"? Music files will be kept.</string>
+    <string name="manage_games_deleted">Game deleted</string>
+    <string name="manage_games_back">← Back</string>
+    <string name="manage_games_pc_editor_hint">💡 Tip: The editor is more comfortable on PC.\nClick here to open the web version.</string>
+    
+    <!-- Track List Editor -->
+    <string name="track_editor_title">Edit Tracklist</string>
+    <string name="track_editor_header_artist">Artist</string>
+    <string name="track_editor_header_title">Title</string>
+    <string name="track_editor_header_date">Date</string>
+    <string name="track_editor_header_year">Year</string>
+    <string name="track_editor_save">💾</string>
+    <string name="track_editor_add">➕</string>
+    <string name="track_editor_edit_review">📝 Edit Tracklist</string>
+    <string name="track_editor_track_count">%1$d tracks</string>
+    
+    <!-- Add Track Dialog -->
+    <string name="add_track_title">Add Track</string>
+    <string name="add_track_search_all">🔍 Search All Songs</string>
+    <string name="add_track_search_local">📁 Search Local Songs Only</string>
+    <string name="add_track_manual">✏️ Create Manually</string>
+    
+    <!-- Track Edit Dialog -->
+    <string name="track_edit_title_new">Create New Track</string>
+    <string name="track_edit_title_edit">Edit Track</string>
+    <string name="track_edit_swap">⇄ Swap</string>
+    <string name="track_edit_save">Save</string>
+    <string name="track_edit_cancel">Cancel</string>
+    
+    <!-- Search Tracks Dialog -->
+    <string name="search_tracks_title">Search Track</string>
+    <string name="search_tracks_hint">Enter artist or title…</string>
+    <string name="search_tracks_no_results">No results</string>
+    <string name="search_tracks_min_chars">Enter at least 3 characters</string>
+    
+    <!-- Community Submission -->
+    <string name="share_with_community">🌍 Share with Community</string>
+    <string name="share_dialog_title">Share with Community</string>
+    <string name="share_dialog_name_label">Your Name (optional)</string>
+    <string name="share_dialog_name_hint">e.g. Max</string>
+    <string name="share_dialog_description_label">Description (optional)</string>
+    <string name="share_dialog_description_hint">What is this playlist about?</string>
+    <string name="share_dialog_submit">Submit</string>
+    <string name="share_dialog_cancel">Cancel</string>
+    <string name="share_submitting">Submitting…</string>
+    <string name="share_success_title">Successfully Submitted!</string>
+    <string name="share_success_message">Your game has been submitted for review.\n\nPlease save these credentials:\n\nSubmission ID: %1$s\nPassword: %2$s\n\nYou can check the status on the website.</string>
+    <string name="share_success_copy">📋 Copy</string>
+    <string name="share_credentials_copied">Credentials copied</string>
+    <string name="share_error">Error submitting: %1$s</string>
+    <string name="share_save_first">Please save the game first</string>
+    <string name="share_resubmit_title">Update Game?</string>
+    <string name="share_resubmit_message">This game has already been submitted.\n\nIf you resubmit, your changes will be uploaded and the status will be reset to \"pending\".\n\nDo you want to continue?</string>
+    <string name="share_resubmit_confirm">Update</string>
+    <string name="share_update_success">Game has been updated</string>
+    
+    <!-- My Submissions -->
+    <string name="my_submissions_title">My Submissions</string>
+    <string name="my_submissions_empty">You haven\'t submitted any games yet.</string>
+    <string name="my_submissions_status_pending">Pending</string>
+    <string name="my_submissions_status_in_progress">In Progress</string>
+    <string name="my_submissions_status_approved">Approved</string>
+    <string name="my_submissions_status_published">Published</string>
+    <string name="my_submissions_status_rejected">Rejected</string>
+    <string name="my_submissions_refresh">Refresh</string>
+    <string name="my_submissions_refreshing">Refreshing status…</string>
+    <string name="my_submissions_refreshed">Status refreshed</string>
+    <string name="my_submissions_votes">%1$d votes</string>
+    <string name="my_submissions_downloads">%1$d downloads</string>
+    <string name="my_submissions_rejection_reason">Reason: %1$s</string>
+    <string name="my_submissions_edit_hint">Edit the game locally and resubmit to upload changes.</string>
+    <string name="my_submissions_check_online">📊 Check Online</string>
+    
+    <!-- Browse Community Games -->
+    <string name="browse_community_title">Community Games</string>
+    <string name="browse_community_empty">No community games available.\nCreate the first one!</string>
+    <string name="browse_community_loading">Loading community games…</string>
+    <string name="browse_community_error">Error loading: %1$s</string>
+    <string name="browse_community_search_hint">Search…</string>
+    <string name="browse_community_sort_newest">Newest</string>
+    <string name="browse_community_sort_votes">Most Votes</string>
+    <string name="browse_community_sort_downloads">Most Downloads</string>
+    <string name="browse_community_tracks">%1$d tracks</string>
+    <string name="browse_community_by">by %1$s</string>
+    <string name="browse_community_vote">👍 %1$d</string>
+    <string name="browse_community_download">⬇️ %1$d</string>
+    <string name="browse_community_download_button">Download</string>
+    <string name="browse_community_vote_button">Vote</string>
+    <string name="browse_community_voted">Voted!</string>
+    <string name="browse_community_download_title">Download Game</string>
+    <string name="browse_community_download_message">The game \"%1$s\" will be downloaded to your games folder.\n\n⚠️ You need to obtain the music files yourself and copy them to the \"%2$s\" folder.</string>
+    <string name="browse_community_download_confirm">Download</string>
+    <string name="browse_community_downloading">Downloading…</string>
+    <string name="browse_community_download_success">Game downloaded!\n\nFolder: %1$s\n\nPlease copy the music files to this folder.</string>
+    <string name="browse_community_download_error">Error downloading: %1$s</string>
+    <string name="browse_community_no_folder">Please select a games folder in settings first.</string>
 </resources>

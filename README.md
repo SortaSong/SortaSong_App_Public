@@ -27,6 +27,28 @@ SortaSong bietet zwei verschiedene Spielmodi:
 * Wähle aus verfügbaren Spielpaketen
 * Keine physischen Materialien erforderlich
 
+### ⭐ Eigene Spiele erstellen
+
+* **Erstelle deine eigenen Spielpakete** mit deiner Musiksammlung
+* **In-App Editor** zum Erstellen und Bearbeiten auf dem Handy
+* **Web Editor** für komfortableres Bearbeiten am PC: [sortasong.github.io/SortaSong_App_Public/editor/](https://sortasong.github.io/SortaSong_App_Public/editor/)
+* Automatisches Auslesen von Metadaten (Künstler, Titel, Jahr) aus Audiodateien
+* Unterstützt MP3, M4A, FLAC, OGG, WAV, AAC
+* Einfacher Transfer zwischen Handy und PC - einfach den Ordner kopieren
+
+### 🌐 Community-Spiele
+
+* **Teile deine Spiele mit der Community** - reiche deine eigenen Spielpakete ein
+* **Entdecke Community-Spiele** - lade Spiele herunter, die andere Spieler erstellt haben
+* **Bewerte Spiele** - stimme für deine Favoriten ab
+* **Verfolge deine Einreichungen** - sieh den Status deiner eingereichten Spiele
+* Community-Spiele durchsuchen: [sortasong.github.io/SortaSong_App_Public/community/](https://sortasong.github.io/SortaSong_App_Public/community/)
+
+### 🐛 Fehler melden
+
+* Melde falsche Track-Daten direkt aus dem Ergebnis-Popup
+* Korrekturen für Künstler, Titel, Datum oder Jahr einreichen
+
 ## Voraussetzungen
 
 * **Android Studio**: Arctic Fox oder neuer
@@ -48,7 +70,6 @@ Beim ersten Start wirst du aufgefordert, einen Ordner mit deinen Spieldaten ausz
 
 Die App erwartet eine spezifische Ordnerstruktur. Die App erstellt Ordner für alle Spiele, die du auswählst.
 Sie kann dir eine Liste der Songs geben, die sie in diesen Ordnern erwartet.
-Lieder sollten als Dateinamen Künslter - Titel haben.
 Die unterstützten Spiele und Tracklists findest du im Abschnitt [Verfügbare Spiele](#-verfügbare-spiele--tracklists) weiter unten.
 
 ### Spielen mit Karten

@@ -248,5 +248,6 @@ window.SupabaseTracks = {
     fetchGames,
     fetchTracks,
     convertToGameTrack,
-    initTrackPicker
+    initTrackPicker,
+    getApiKey: () => SUPABASE_ANON_KEY
 };
