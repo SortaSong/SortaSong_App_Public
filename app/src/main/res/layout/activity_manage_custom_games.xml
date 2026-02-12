@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_games_pc_editor_hint"
-        android:textColor="@color/sortasound_primary"
+        android:textColor="@color/sortasong_primary"
         android:textSize="12sp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
@@ -58,7 +58,7 @@
         android:layout_marginHorizontal="16dp"
         android:text="@string/manage_games_create"
         android:textSize="16sp"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:layout_marginBottom="8dp" />
 
     <!-- Action Buttons Row -->

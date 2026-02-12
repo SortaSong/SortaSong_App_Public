@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SortaSound</string>
+    <string name="app_name">SortaSong</string>
     <string name="activity_player_setup_PlayerNameInput">Enter player name</string>
     <string name="activity_player_setup_select_games">🎮 Select games</string>
     <string name="activity_game_selection_confirm_selection">✅ Confirm selection</string>

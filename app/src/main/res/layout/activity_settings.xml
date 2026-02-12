@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_settings_sync_button"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:textSize="16sp"
         android:layout_marginBottom="8dp" />
 
@@ -107,7 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_settings_verify_missing_button"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:textSize="16sp"
         android:layout_marginBottom="8dp" />
 
@@ -116,7 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_settings_verify_all_button"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:textSize="16sp"
         android:layout_marginBottom="8dp" />
 

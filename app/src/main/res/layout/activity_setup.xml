@@ -10,7 +10,7 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
     <ImageView
-        android:src="@drawable/sortasound_logo_with_name"
+        android:src="@drawable/sortasong_logo_with_name"
         android:contentDescription="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,5 +44,5 @@
         android:autoSizeMaxTextSize="180sp"
         android:autoSizeStepGranularity="1sp"
         android:maxLines="1"
-        android:backgroundTint="@color/sortasound_primary"/>
+        android:backgroundTint="@color/sortasong_primary"/>
 </LinearLayout>

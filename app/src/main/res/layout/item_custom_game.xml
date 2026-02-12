@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="@string/manage_games_edit"
         android:textSize="12sp"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:layout_marginEnd="8dp" />
 
     <!-- Delete Button -->

@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:contentDescription="@string/vinyl_record_spinning"
-                android:src="@drawable/sortasound_vinyl" />
+                android:src="@drawable/sortasong_vinyl" />
 
             <ImageView
                 android:id="@+id/armView"
@@ -42,7 +42,7 @@
 
                 android:layout_gravity="bottom|end"
                 android:contentDescription="@string/record_player_arm"
-                android:src="@drawable/sortasound_playarm"/>
+                android:src="@drawable/sortasong_playarm"/>
         </FrameLayout>
 
         <SeekBar
@@ -50,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginVertical="16dp"
-            android:progressTint="@color/sortasound_secondary"
-            android:thumbTint="@color/sortasound_secondary"
+            android:progressTint="@color/sortasong_secondary"
+            android:thumbTint="@color/sortasong_secondary"
             android:progressBackgroundTint="@color/white"
             />
 
@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="▶️"
-                android:backgroundTint="@color/sortasound_primary"/>
+                android:backgroundTint="@color/sortasong_primary"/>
 
             <Button
                 android:id="@+id/pauseButton"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="⏸️"
                 android:layout_marginStart="16dp"
-                android:backgroundTint="@color/sortasound_primary"/>
+                android:backgroundTint="@color/sortasong_primary"/>
         </LinearLayout>
 
         <Button
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nächster Song (Scannen)"
-            android:backgroundTint="@color/sortasound_primary"/>
+            android:backgroundTint="@color/sortasong_primary"/>
     </LinearLayout>
 
 </FrameLayout>

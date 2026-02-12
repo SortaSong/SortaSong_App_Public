@@ -93,7 +93,7 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_menu_save"
         android:contentDescription="@string/track_editor_save"
-        app:backgroundTint="@color/sortasound_primary"
+        app:backgroundTint="@color/sortasong_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

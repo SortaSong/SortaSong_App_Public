@@ -2,6 +2,12 @@
 
 All notable changes to SortaSong will be documented in this file.
 
+## [1.2.1] - 2026-02-12
+
+### Fixed
+- Fixed naming inconsistencies in drawable resources (SortaSound → SortaSong)
+- Corrected resource file naming convention across the project
+
 ## [1.2.0] - 2026-02-04
 
 ### Added

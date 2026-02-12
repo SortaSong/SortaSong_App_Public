@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
-    android:backgroundTint="@color/sortasound_text"
+    android:backgroundTint="@color/sortasong_text"
     android:backgroundTintMode="multiply"
     >
 
@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:textColor="@color/sortasound_text"
+        android:textColor="@color/sortasong_text"
         android:hint="@string/list_item_player_name"
         android:inputType="textPersonName"
         android:autofillHints="name"
@@ -25,5 +25,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/item_player_delete_icon"
-        android:backgroundTint="@color/sortasound_primary"/>
+        android:backgroundTint="@color/sortasong_primary"/>
 </LinearLayout>

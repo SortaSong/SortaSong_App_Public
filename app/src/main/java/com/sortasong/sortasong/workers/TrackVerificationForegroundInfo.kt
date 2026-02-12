@@ -19,7 +19,7 @@ object TrackVerificationForegroundInfo {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle("Musikdateien überprüfen")
             .setContentText("Überprüfe verfügbare Tracks...")
-            .setSmallIcon(R.drawable.sortasound_logo_with_name)
+            .setSmallIcon(R.drawable.sortasong_logo_with_name)
             .setOngoing(true)
             .build()
 

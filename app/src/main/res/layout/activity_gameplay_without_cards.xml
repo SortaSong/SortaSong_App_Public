@@ -45,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/sortasound_primary"
+                android:backgroundTint="@color/sortasong_primary"
                 android:text="@string/activity_gameplay_without_cards_up_arrow"
                 android:textSize="20sp" />
 
@@ -68,7 +68,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/sortasound_primary"
+                android:backgroundTint="@color/sortasong_primary"
                 android:text="@string/activity_gameplay_without_cards_down_arrow"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_gameplay_without_cards_skip_to_next_song"
-                android:backgroundTint="@color/sortasound_primary"/>
+                android:backgroundTint="@color/sortasong_primary"/>
         </LinearLayout>
 
         <LinearLayout
@@ -111,15 +111,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_gameplay_without_cards_play"
-                android:backgroundTint="@color/sortasound_primary"/>
+                android:backgroundTint="@color/sortasong_primary"/>
 
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:progressTint="@color/sortasound_secondary"
-                android:thumbTint="@color/sortasound_secondary"
+                android:progressTint="@color/sortasong_secondary"
+                android:thumbTint="@color/sortasong_secondary"
                 android:progressBackgroundTint="@color/white"/>
         </LinearLayout>
 
@@ -159,11 +159,11 @@
         tools:ignore="RtlSymmetry">
 
         <ImageView
-            android:id="@+id/sortasound_logo_with_name"
+            android:id="@+id/sortasong_logo_with_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/sortasound_logo_with_name" />
+            android:src="@drawable/sortasong_logo_with_name" />
 
         <TextView
             android:id="@+id/currentPlayerText"
@@ -228,7 +228,7 @@
         android:text="@string/activity_gameplay_without_cards_startGameButton_default"
         android:textSize="40sp"
         android:autoSizeTextType="uniform"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         app:layout_constraintTop_toBottomOf="@id/oldestYearLayout"
         app:layout_constraintBottom_toTopOf="@id/youngestYearLayout"
         app:layout_constraintStart_toStartOf="parent"

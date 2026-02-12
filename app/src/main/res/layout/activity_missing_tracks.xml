@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/actitvity_missing_tracks_copyToClipBoardButton_default"
-        android:backgroundTint="@color/sortasound_primary"
+        android:backgroundTint="@color/sortasong_primary"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp" />
